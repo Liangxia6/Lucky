@@ -124,7 +124,7 @@ void Channel::UpdateinChannel() {
 }
 
 void Channel::RemoveinChannel() {
-    this->loop_->RemoveinEventLoop();
+    this->loop_->RemoveinEventLoop(this);
 }
 
 void Channel::HandleEventGuard(TimeStamp receiveTime)
