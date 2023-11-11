@@ -6,7 +6,7 @@
 class TimeStamp{
 public:
     TimeStamp();
-    TimeStamp(int64_t sysSecond);
+    TimeStamp(int64_t);
     static TimeStamp NowTime();
     std::string TimetoString() const;
     

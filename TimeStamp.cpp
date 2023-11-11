@@ -23,8 +23,8 @@ std::string TimeStamp::TimetoString() const {
     return buff;
 }
 
-#include <iostream>
-int main() {
-    std::cout << TimeStamp::NowTime().TimetoString() << std::endl;
-    return 0;
-}
+// #include <iostream>
+// int main() {
+//     std::cout << TimeStamp::NowTime().TimetoString() << std::endl;
+//     return 0;
+// }
