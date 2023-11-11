@@ -47,6 +47,15 @@ TimeStamp Epoller::epoll(int timeout, ChannelList *activeChannels){
     return now;
 }
 
+bool Epoller::hasChannel(Channel *channel) const{
+    auto it = this->channels_.find(channel->getFd());
+    auto ret = it != this->channels_.end() && it->second == channel;
+    return ret;
+}
+
+Epoller *Epoller::newEpoller(EventLoop *loop) {
+    return new Epoller(loop);
+}
 
 void Epoller::UpdateinEpoller(Channel *channel) {
     const int index = channel->getIndex();
@@ -61,10 +70,10 @@ void Epoller::UpdateinEpoller(Channel *channel) {
     } else {
         int fd = channel->getFd();
         if (channel->isNoneEvent()){
-            update(EPOLL_CTL_DEL, channel);
+            this->update(EPOLL_CTL_DEL, channel);
             channel->setIndex(keyDeleted);
         } else {
-            update(EPOLL_CTL_MOD, channel);
+            this->update(EPOLL_CTL_MOD, channel);
         }
     }
 }
@@ -78,19 +87,9 @@ void Epoller::RemoveinEpoller(Channel *channel) {
 
     int index = channel->getIndex();
     if (index == keyAdded){
-        update(EPOLL_CTL_DEL, channel);    
+        this->update(EPOLL_CTL_DEL, channel);    
     }
     channel->setIndex(keyNew);
-}
-
-bool Epoller::hasChannel(Channel *channel) const{
-    auto it = this->channels_.find(channel->getFd());
-    auto ret = it != this->channels_.end() && it->second == channel;
-    return ret;
-}
-
-Epoller *Epoller::newEpoller(EventLoop *loop) {
-    return new Epoller(loop);
 }
 
 void Epoller::fillActiveChannels(int events_num, ChannelList *activeChannels) const{
@@ -111,7 +110,7 @@ void Epoller::update(int operation, Channel *channel){
     event.data.ptr = channel;
 
     //int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
-    if (epoll_ctl(epollfd_, operation, channel->getFd(), &event) < 0){
+    if (epoll_ctl(this->epollfd_, operation, channel->getFd(), &event) < 0){
         if (operation == EPOLL_CTL_DEL){
             LOG_ERROR("epoll_ctl del error:%d\n", errno);
         } else {

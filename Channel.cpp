@@ -76,9 +76,6 @@ bool Channel::isReading() const{
     return this->events_ & keyReadEvent;
 }
 
-void Channel::setReadCallback(ReadEventCallback cb) { 
-    this->readCallback_ = std::move(cb); 
-}
 
 int Channel::getFd() const {
     return this->fd_;
@@ -102,6 +99,9 @@ EventLoop * Channel::ownerLoop(){
     return this->loop_;
 }
 
+void Channel::setReadCallback(ReadEventCallback cb) { 
+    this->readCallback_ = std::move(cb); 
+}
 void Channel::setWriteCallback(EventCallback cb) { 
     this->writeCallback_ = std::move(cb); 
 }
@@ -119,12 +119,12 @@ void Channel::tie(const std::shared_ptr<void> &obj){
     this->tied_ = true;
 }
 
-void Channel::RemoveinChannel() {
-    this->loop_->RemoveinEventLoop();
-}
-
 void Channel::UpdateinChannel() {
     this->loop_->UpdateinEventLoop(this);
+}
+
+void Channel::RemoveinChannel() {
+    this->loop_->RemoveinEventLoop();
 }
 
 void Channel::HandleEventGuard(TimeStamp receiveTime)

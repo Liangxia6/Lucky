@@ -8,7 +8,6 @@
 #include "Channel.h"
 #include "EventLoop.h"
 
-
 class Epoller{
 
 public:
@@ -19,19 +18,18 @@ public:
     ~Epoller();
 
     TimeStamp epoll(int, ChannelList *);
-    void UpdateinEpoller(Channel *);
-    void RemoveinEpoller(Channel *);
 
     bool hasChannel(Channel *) const;
-
     static Epoller *newEpoller(EventLoop *);
+
+    void UpdateinEpoller(Channel *);
+    void RemoveinEpoller(Channel *);
 
 private:
 
     static const int keyEventListSize = 16;
 
     void fillActiveChannels(int, ChannelList *) const;
-
     void update(int, Channel *);
 
     using EventList = std::vector<epoll_event>;

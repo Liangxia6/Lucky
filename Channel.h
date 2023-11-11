@@ -43,11 +43,11 @@ public:
     void setCloseCallback(EventCallback);
     void setErrorCallback(EventCallback); 
 
+    void UpdateinChannel();
     void RemoveinChannel();
 
 private:
 
-    void UpdateinChannel();
     void HandleEventGuard(TimeStamp);
 
     static const int keyNoneEvent;
