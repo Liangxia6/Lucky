@@ -22,53 +22,53 @@ Thread::Thread(ThreadFunc func, const std::string &name)
     , tid_(0)
     , func_(std::move(func))
     , name_(name){
-    this->setName();
+    setName();
 }
 
 Thread::~Thread(){
     if (is_start_ && !is_join_){
-        this->thread_->detach();
+        thread_->detach();
     }
 }
 
 void Thread::start(){
-    this->is_start_ = true;
+    is_start_ = true;
     sem_t sem;
     sem_init(&sem, false, 0);
 
-    this->thread_ = std::shared_ptr<std::thread>(
+    thread_ = std::shared_ptr<std::thread>(
         new std::thread([&]() {
-        this->tid_ = getThreadID::tid();            
+        tid_ = getThreadID::tid();            
         sem_post(&sem);
-        this->func_();
+        func_();
         })
     );
     sem_wait(&sem);
 }
 
 void Thread::join(){
-    this->is_join_ = true;
-    this->thread_->join();
+    is_join_ = true;
+    thread_->join();
 }
 
 bool Thread::isStart(){
-    return this->is_start_;
+    return is_start_;
 }
 
 pid_t Thread::getTid() const{
-    return this->tid_;
+    return tid_;
 }
 
 void Thread::setName(){
     int num = ++create_num_;
-    if (this->name_.empty()){
+    if (name_.empty()){
         char buff[32] = {};
         snprintf(buff, sizeof(buff), "Thread%d", num);
     }
 }
 
 const std::string &Thread::getName() const{
-    return this->name_;
+    return name_;
 }
 
 int Thread::getCreate_num(){

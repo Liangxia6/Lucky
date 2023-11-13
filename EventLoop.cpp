@@ -31,70 +31,70 @@ EventLoop::EventLoop()
     LOG_DEBUG("EventLoop created %p in thread %d\n", this, threadId_);
 
     if (t_LoopinThread){
-        LOG_FATAL("Another EventLoop %p exists in this thread %d\n", t_LoopinThread, this->threadId_);
+        LOG_FATAL("Another EventLoop %p exists in this thread %d\n", t_LoopinThread, threadId_);
     } else {
         t_LoopinThread = this;
     }
-    this->wakeupChannel_->setReadCallback(std::bind(&HandelRead, this));
-    this->wakeupChannel_->enableReading(); 
+    wakeupChannel_->setReadCallback(std::bind(&HandelRead, this));
+    wakeupChannel_->enableReading(); 
 }
 
 EventLoop::~EventLoop(){
-    this->wakeupChannel_->disableAll();
-    this->wakeupChannel_->RemoveinChannel();    
+    wakeupChannel_->disableAll();
+    wakeupChannel_->RemoveinChannel();    
     close(wakeupFd_);
     t_LoopinThread = nullptr;
 }
 
 void EventLoop::loop(){
-    this->looping_ = true;
-    this->quit_ = false;
+    looping_ = true;
+    quit_ = false;
 
     LOG_INFOM("EventLoop %p start looping\n", this);
 
-    while (!this->quit_){
-        this->activeChannels_.clear();
-        this->epollReturnTime_ = this->epoller_->epoll(
-            keyEpollTime, &this->activeChannels_);
+    while (!quit_){
+        activeChannels_.clear();
+        epollReturnTime_ = epoller_->epoll(
+            keyEpollTime, &activeChannels_);
         
-        for (Channel *channel : this->activeChannels_){
+        for (Channel *channel : activeChannels_){
             channel->HandleEvent(epollReturnTime_);
         }
 
-        this->doPendFun();
+        doPendFun();
     }
 
     LOG_INFOM("EventLoop %p stop looping.\n", this);
-    this->looping_ = false;
+    looping_ = false;
 }
 
 void EventLoop::quit(){
-    this->quit_ = true;
-    if (!this->isLoopThread()){
-        this->wakeup();
+    quit_ = true;
+    if (!isLoopThread()){
+        wakeup();
     }
 }
 
 void EventLoop::RuninLoop(Callback cb){
-    if (this->isLoopThread()){
+    if (isLoopThread()){
         cb();
     } else {
-        this->QueueinLoop(cb);
+        QueueinLoop(cb);
     }
 }
 void EventLoop::QueueinLoop(Callback cb){
     {
-        std::unique_lock<std::mutex> lock(this->mutex_);
-        this->pendFuns_.emplace_back(cb);
+        std::unique_lock<std::mutex> lock(mutex_);
+        pendFuns_.emplace_back(cb);
     }
-    if (!this->isLoopThread() || this->callPendFun_){
-        this->wakeup();
+    if (!isLoopThread() || callPendFun_){
+        wakeup();
     }
 }
 
 void EventLoop::wakeup() {
     uint64_t u64one = 1;
-    ssize_t n = write(this->wakeupFd_, &u64one, sizeof(u64one));
+    ssize_t n = write(wakeupFd_, &u64one, sizeof(u64one));
 
     if (n != sizeof(u64one)){
         LOG_ERROR("EventLoop::wakeup() writes %lu bytes instead of 8\n", n);
@@ -102,28 +102,28 @@ void EventLoop::wakeup() {
 }
 
 bool EventLoop::isLoopThread() const{
-    return this->threadId_ == getThreadID::tid();
+    return threadId_ == getThreadID::tid();
 }
 
 bool EventLoop::hasChannel(Channel *channel){
-    this->epoller_->hasChannel(channel);
+    epoller_->hasChannel(channel);
 }
 
 TimeStamp EventLoop::epollReturnTime() const{
-    return this->epollReturnTime_;
+    return epollReturnTime_;
 }
 
 void EventLoop::UpdateinEventLoop(Channel *channel){
-    this->epoller_->UpdateinEpoller(channel);
+    epoller_->UpdateinEpoller(channel);
 }
 
 void EventLoop::RemoveinEventLoop(Channel *channel){
-    this->epoller_->RemoveinEpoller(channel);
+    epoller_->RemoveinEpoller(channel);
 }
 
 void EventLoop::HandelRead(){
     uint64_t u64one = 1;
-    ssize_t n = write(this->wakeupFd_, &u64one, sizeof(u64one));
+    ssize_t n = write(wakeupFd_, &u64one, sizeof(u64one));
 
     if (n != sizeof(u64one)){
         LOG_ERROR("EventLoop::HandleRead() writes %lu bytes instead of 8\n", n);
@@ -132,13 +132,13 @@ void EventLoop::HandelRead(){
 
 void EventLoop::doPendFun(){
     std::vector<Callback> functors;
-    this->callPendFun_ = true;
+    callPendFun_ = true;
     {
         std::unique_lock<std::mutex> lock(mutex_);
-        functors.swap(this->pendFuns_); // 交换的方式减少了锁的临界区范围 提升效率 同时避免了死锁 如果执行functor()在临界区内 且functor()中调用queueInLoop()就会产生死锁
+        functors.swap(pendFuns_); // 交换的方式减少了锁的临界区范围 提升效率 同时避免了死锁 如果执行functor()在临界区内 且functor()中调用queueInLoop()就会产生死锁
     }
     for (const Callback &functor : functors){
         functor(); // 执行当前loop需要执行的回调操作
     }
-    this->callPendFun_ = false;
+    callPendFun_ = false;
 }

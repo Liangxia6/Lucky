@@ -40,91 +40,91 @@ void Channel::HandleEvent(TimeStamp receiveTime)
 }
 
 void Channel::enableReading() { 
-    this->events_ |= keyReadEvent; 
-    this->UpdateinChannel(); 
+    events_ |= keyReadEvent; 
+    UpdateinChannel(); 
 }
 
 void Channel::disableReading() {
-    this->events_ &= ~keyReadEvent; 
-    this->UpdateinChannel(); 
+    events_ &= ~keyReadEvent; 
+    UpdateinChannel(); 
 }
 
 void Channel::enableWriting() { 
-    this->events_ |= keyWriteEvent; 
-    this->UpdateinChannel(); 
+    events_ |= keyWriteEvent; 
+    UpdateinChannel(); 
 }
 
 void Channel::disableWriting() {
-    this->events_ &= ~keyWriteEvent;
-    this->UpdateinChannel();
+    events_ &= ~keyWriteEvent;
+    UpdateinChannel();
 }
 
 void Channel::disableAll() {
-    this->events_ =  keyNoneEvent;
-    this->UpdateinChannel();
+    events_ =  keyNoneEvent;
+    UpdateinChannel();
 }
 
 bool Channel::isNoneEvent() const{
-    return this->events_ == keyNoneEvent;
+    return events_ == keyNoneEvent;
 }
 
 bool Channel::isWriting() const{
-    return this->events_ & keyWriteEvent;
+    return events_ & keyWriteEvent;
 }
 
 bool Channel::isReading() const{
-    return this->events_ & keyReadEvent;
+    return events_ & keyReadEvent;
 }
 
 
 int Channel::getFd() const {
-    return this->fd_;
+    return fd_;
 }
 int Channel::getEvents() const {
-    return this->events_;
+    return events_;
 }
 void Channel::setRevents(int revent) {
-    this->revents_ = revent;
+    revents_ = revent;
 }
 
 int Channel::getIndex() const{
-    return this->index_;
+    return index_;
 }
 
 void Channel::setIndex(int index) {
-    this->index_ = index;
+    index_ = index;
 }
 
 EventLoop * Channel::ownerLoop(){
-    return this->loop_;
+    return loop_;
 }
 
 void Channel::setReadCallback(ReadEventCallback cb) { 
-    this->readCallback_ = std::move(cb); 
+    readCallback_ = std::move(cb); 
 }
 void Channel::setWriteCallback(EventCallback cb) { 
-    this->writeCallback_ = std::move(cb); 
+    writeCallback_ = std::move(cb); 
 }
 
 void Channel::setCloseCallback(EventCallback cb) { 
-    this->closeCallback_ = std::move(cb); 
+    closeCallback_ = std::move(cb); 
 }
 
 void Channel::setErrorCallback(EventCallback cb) { 
-    this->errorCallback_ = std::move(cb); 
+    errorCallback_ = std::move(cb); 
 }
     
 void Channel::tie(const std::shared_ptr<void> &obj){
-    this->tie_ = obj;
-    this->tied_ = true;
+    tie_ = obj;
+    tied_ = true;
 }
 
 void Channel::UpdateinChannel() {
-    this->loop_->UpdateinEventLoop(this);
+    loop_->UpdateinEventLoop(this);
 }
 
 void Channel::RemoveinChannel() {
-    this->loop_->RemoveinEventLoop(this);
+    loop_->RemoveinEventLoop(this);
 }
 
 void Channel::HandleEventGuard(TimeStamp receiveTime)

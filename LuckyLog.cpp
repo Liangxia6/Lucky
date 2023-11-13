@@ -12,14 +12,14 @@ LuckyLog &LuckyLog::LogInstance(){
 
 // 设置日志级别
 void LuckyLog::setLogLevel(int loglevel){
-    this->loglevel_ = loglevel;
+    loglevel_ = loglevel;
 }
 
 
 // 写日志
 void LuckyLog::LogWritter(std::string msg){
     std::string head("");
-    switch (this->loglevel_)
+    switch (loglevel_)
     {
     case INFOM:
         head = "[INFOM]";

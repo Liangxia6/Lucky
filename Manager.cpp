@@ -11,23 +11,23 @@ Manager::Manager(const ThreadInitCallback &cb = ThreadInitCallback(),
 
 }
 Manager::~Manager(){
-    this->is_exit_ = true;
+    is_exit_ = true;
     if (this,loop_ != nullptr){
-        this->loop_->quit();
-        this->thread_.join();
+        loop_->quit();
+        thread_.join();
     }
 }
 
 EventLoop *Manager::startLoop(){
-    this->thread_.start();
+    thread_.start();
     EventLoop *loop = nullptr;
 
     {
-        std::unique_lock<std::mutex> lock(this->mutex_);
+        std::unique_lock<std::mutex> lock(mutex_);
         while(loop_ == nullptr){
-            this->cond_.wait(lock);
+            cond_.wait(lock);
         }
-        loop = this->loop_;
+        loop = loop_;
     }
     return loop;
 }
@@ -35,17 +35,17 @@ EventLoop *Manager::startLoop(){
 void Manager::threadFunc(){
     EventLoop loop;
 
-    if (this->callback_){
-        this->callback_(&loop);
+    if (callback_){
+        callback_(&loop);
     }
 
     {
-        std::unique_lock<std::mutex> lock(this->mutex_);
-        this->loop_ = &loop;
-        this->cond_.notify_one();
+        std::unique_lock<std::mutex> lock(mutex_);
+        loop_ = &loop;
+        cond_.notify_one();
     }
 
     loop.loop();
-    std::unique_lock<std::mutex> lock(this->mutex_);
-    this->loop_ = nullptr;
+    std::unique_lock<std::mutex> lock(mutex_);
+    loop_ = nullptr;
 }

@@ -14,19 +14,19 @@ ThreadPool::~ThreadPool(){
 }
 
 void ThreadPool::setThread_num(int num){
-    this->threads_num_ = num;
+    threads_num_ = num;
 }
 
 void ThreadPool::start(const ThreadInitCallback &cb = ThreadInitCallback()){
-    this->is_start_ = true;
+    is_start_ = true;
     for (int i = 0; i < threads_num_; ++i){
         char buf[name_.size() + 32];
         snprintf(buf, sizeof buf, "%s%d", name_.c_str(), i);
         Manager *t = new Manager(cb, buf);
-        this->threads_.push_back(std::unique_ptr<Manager>(t));
-        this->loops_.push_back(t->startLoop());
+        threads_.push_back(std::unique_ptr<Manager>(t));
+        loops_.push_back(t->startLoop());
     }
-    if(this->threads_num_ == 0 && cb){
+    if(threads_num_ == 0 && cb){
         cb(baseLoop_);
     }
 }
@@ -37,7 +37,7 @@ EventLoop *ThreadPool::getNextLoop(){
     if(!loops_.empty()){
         loop = loops_[nextLoop_];
         ++nextLoop_;
-        if(nextLoop_ >= this->loops_.size()){
+        if(nextLoop_ >= loops_.size()){
             nextLoop_ = 0;
         }
     }
@@ -45,17 +45,17 @@ EventLoop *ThreadPool::getNextLoop(){
 }
 
 std::vector<EventLoop *> ThreadPool::getAllLoops(){
-    if(this->loops_.empty()){
+    if(loops_.empty()){
         return std::vector<EventLoop *>(1, baseLoop_);
     } else {
-        return this->loops_;
+        return loops_;
     }
 }
 
 bool ThreadPool::is_start() const{
-    return this->is_start_;
+    return is_start_;
 }
 
 const std::string ThreadPool::getName() const{
-    return this->name_;
+    return name_;
 }
