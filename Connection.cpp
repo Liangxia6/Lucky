@@ -149,9 +149,70 @@ void Connection::setHighWaterMarkCallback(const HighWaterMarkCallback &cb, size_
 }
 
 void Connection::handleRead(TimeStamp receiveTime){
-
+    int savedErrno = 0;
+    ssize_t n = inputBuffer_.readFd(channel_->getFd(), &savedErrno);
+    if(n > 0){
+        messageCallback_(shared_from_this(), &inputBuffer_, receiveTime);
+    } else if (n == 0){
+        handleClose();
+    } else {
+        errno = savedErrno;
+        LOG_ERROR("TcpConnection::handleRead");
+        handleError();
+    }
 }
 
-    void handleWrite();
-    void handleClose();
-    void handleError();
+void Connection::handleWrite(){
+    if (channel_->isWriting()){
+        int savedErrno = 0;
+        ssize_t n = outputBuffer_.writeFd(channel_->getFd(), &savedErrno);
+        if (n > 0)
+        {
+            outputBuffer_.retrieve(n);
+            if (outputBuffer_.readableBytes() == 0){
+                channel_->disableWriting();
+                if (writeCompleteCallback_){
+                    loop_->QueueinLoop(
+                            std::bind(writeCompleteCallback_, shared_from_this()));
+                }
+                if (state_ == keyDisconnecting)
+                    {
+                        shutdownInLoop(); 
+                    }
+                }
+                else
+            {
+                LOG_ERROR("TcpConnection::handleWrite");
+            }
+        }
+        else
+        {
+            LOG_ERROR("TcpConnection fd=%d is down, no more writing", channel_->getFd());
+        }
+    }
+}
+
+void Connection::handleClose(){
+    LOG_INFOM("TcpConnection::handleClose fd=%d state=%d\n", channel_->getFd(), (int)state_);
+    setState(keyDisconnected);
+    channel_->disableAll();
+
+    TcpConnectionPtr connPtr(shared_from_this());
+    connectionCallback_(connPtr);
+    closeCallback_(connPtr);  
+}
+
+void Connection::handleError(){
+    int optval;
+    socklen_t optlen = sizeof optval;
+    int err = 0;
+    if (::getsockopt(channel_->getFd(), SOL_SOCKET, SO_ERROR, &optval, &optlen) < 0)
+    {
+        err = errno;
+    }
+    else
+    {
+        err = optval;
+    }
+    LOG_ERROR("TcpConnection::handleError name:%s - SO_ERROR:%d\n", name_.c_str(), err);
+}
