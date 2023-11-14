@@ -13,7 +13,7 @@ static int createNonblockFd(){
     }
     return sockfd;
 }
-    
+
 Acceptor::Acceptor(EventLoop *loop, const Address &listenAddr, bool reuseport)
     : is_listen_(false)
     , acceptSocket_(createNonblockFd())
