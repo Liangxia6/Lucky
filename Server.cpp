@@ -52,7 +52,7 @@ void TcpServer::setThreadNum(int numThreads)
 }
 
 // 开启服务器监听
-void TcpServer::start()
+void  TcpServer::start()
 {
     if (started_++ == 0)    // 防止一个TcpServer对象被start多次
     {
