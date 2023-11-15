@@ -1,4 +1,4 @@
-#pragma once
+#pragma once 
 
 #include <functional>
 #include <string>
@@ -8,18 +8,17 @@
 
 #include "EventLoop.h"
 #include "Acceptor.h"
-#include "Addresss.h"
+#include "Address.h"
 #include "ThreadPool.h"
 #include "Connection.h"
 #include "Manager.h"
 #include "Buffer.h"
 
-class TcpServer{
+class Server{
 
 public:
 
     using TcpConnectionPtr = std::shared_ptr<Connection>;
-
     using ConnectionCallback = std::function<void(const TcpConnectionPtr &)>;
     using CloseCallback = std::function<void(const TcpConnectionPtr &)>;
     using WriteCompleteCallback = std::function<void(const TcpConnectionPtr &)>;
@@ -30,15 +29,15 @@ public:
 
     enum Option
     {
-        keyNoReusePort,
-        keyReusePort,
+        kNoReusePort,
+        kReusePort,
     };
 
-    TcpServer(EventLoop *loop,
+    Server(EventLoop *loop,
             const Address &listenAddr,
             const std::string &nameArg,
-            Option option = keyNoReusePort);
-    ~TcpServer();
+            Option option = kNoReusePort);
+    ~Server();
 
     void setThreadInitCallback(const ThreadInitCallback &cb) { threadInitCallback_ = cb; }
     void setConnectionCallback(const ConnectionCallback &cb) { connectionCallback_ = cb; }
@@ -62,7 +61,7 @@ private:
     const std::string name_;
 
     std::unique_ptr<Acceptor> acceptor_; 
-    std::shared_ptr<Manager> threadPool_; 
+    std::shared_ptr<ThreadPool> threadPool_; 
 
     ConnectionCallback connectionCallback_;      
     MessageCallback messageCallback_;            

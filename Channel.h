@@ -6,6 +6,8 @@
 #include "TimeStamp.h"
 #include "EventLoop.h"
 
+class EventLoop;
+
 class Channel{
 
 public:
@@ -50,9 +52,9 @@ private:
 
     void HandleEventGuard(TimeStamp);
 
-    static const int keyNoneEvent;
-    static const int keyReadEvent;
-    static const int keyWriteEvent;
+    static const int kNoneEvent;
+    static const int kReadEvent;
+    static const int kWriteEvent;
 
     EventLoop *loop_;
     const int fd_;

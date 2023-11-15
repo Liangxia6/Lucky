@@ -4,12 +4,16 @@
 #include <string>
 #include <atomic>
 
-#include "Addresss.h"
+#include "Address.h"
 #include "TimeStamp.h"
 #include "Channel.h"
 #include "EventLoop.h"
 #include "Socket.h"
 #include "Buffer.h"
+
+class Channel;
+class EventLoop;
+class Socket;
 
 class Connection : public std::enable_shared_from_this<Connection>{
 
@@ -47,10 +51,10 @@ public:
 private:
 
     enum StateE{
-        keyDisconnected,
-        keyConnecting,  
-        keyConnected,   
-        keyDisconnecting
+        kDisconnected,
+        kConnecting,  
+        kConnected,   
+        kDisconnecting
     };
     void setState(StateE state);
 
@@ -59,7 +63,7 @@ private:
     void handleClose();
     void handleError();
 
-    void sendInLoop(const void *data, size_t len);
+    //void sendInLoop(const void *data, size_t len);
     void shutdownInLoop();
 
     EventLoop *loop_;

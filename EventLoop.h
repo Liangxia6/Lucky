@@ -11,6 +11,8 @@
 #include "Epoller.h"
 #include "getThreadID.h"
 
+class Channel;
+class Epoller;
 
 class EventLoop {
 

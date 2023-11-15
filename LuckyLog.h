@@ -2,6 +2,13 @@
 
 #include <string>
 
+enum LogLevel{
+    INFOM,
+    ERROR,
+    FATAL,
+    DEBUG,
+};
+
 void logMessage(LogLevel level, const char* format, ...);
 
 #define LOG_INFOM(format, ...) logMessage(INFOM, format, ##__VA_ARGS__)
@@ -14,12 +21,6 @@ void logMessage(LogLevel level, const char* format, ...);
 #define LOG_DEBUG(format, ...)
 #endif
 
-enum LogLevel{
-    INFOM,
-    ERROR,
-    FATAL,
-    DEBUG,
-};
 
 template <LogLevel loglevel>
 LogLevel LOG_log(){

@@ -23,7 +23,7 @@ Connection::Connection(EventLoop *loop,
                     const Address &peerAddr)
     : loop_(CheckLoop(loop))
     , name_(nameArg)
-    , state_(keyConnecting)
+    , state_(kConnecting)
     , reading_(true)
     , socket_(new Socket(sockfd))
     , channel_(new Channel(loop, sockfd))
@@ -61,18 +61,18 @@ const Address &Connection::peerAddress() const{
 }
 
 bool Connection::is_connect() const{
-    return state_ == keyConnected;
+    return state_ == kConnected;
 }
 
 
 void Connection::send(std::string &buff){
-    if (state_ == keyConnected){
+    if (state_ == kConnected){
         if(loop_->isLoopThread()){
             ssize_t nwrote = 0;
             size_t len = buff.size();
             size_t remaining = buff.size();
             bool faultError = false;
-            if (state_ == keyDisconnected) {
+            if (state_ == kDisconnected) {
                 LOG_ERROR("disconnected, give up writing");
             }
             if (!channel_->isWriting() && outputBuffer_.readableBytes() == 0){
@@ -106,16 +106,16 @@ void Connection::send(std::string &buff){
                 }
             }
         } else {
-            loop_->RuninLoop(std::bind(
-                &Connection::sendInLoop, this, buff.c_str(), buff.size()));
+            //loop_->RuninLoop(std::bind(
+                //&Connection::sendInLoop, this, buff.c_str(), buff.size()));
         }
     }
 
 }
 
 void Connection::shutdown(){
-    if (state_ == keyConnected){
-        setState(keyDisconnecting);
+    if (state_ == kConnected){
+        setState(kDisconnecting);
         loop_->RuninLoop(
             std::bind(&Connection::shutdownInLoop, this));
     }
@@ -175,7 +175,7 @@ void Connection::handleWrite(){
                     loop_->QueueinLoop(
                             std::bind(writeCompleteCallback_, shared_from_this()));
                 }
-                if (state_ == keyDisconnecting)
+                if (state_ == kDisconnecting)
                     {
                         shutdownInLoop(); 
                     }
@@ -194,7 +194,7 @@ void Connection::handleWrite(){
 
 void Connection::handleClose(){
     LOG_INFOM("TcpConnection::handleClose fd=%d state=%d\n", channel_->getFd(), (int)state_);
-    setState(keyDisconnected);
+    setState(kDisconnected);
     channel_->disableAll();
 
     TcpConnectionPtr connPtr(shared_from_this());
@@ -215,4 +215,26 @@ void Connection::handleError(){
         err = optval;
     }
     LOG_ERROR("TcpConnection::handleError name:%s - SO_ERROR:%d\n", name_.c_str(), err);
+}
+
+void Connection::setState(StateE state){
+    state_ = state;
+}
+
+void Connection::connectEstablished(){
+    setState(kConnected);
+    channel_->tie(shared_from_this());
+    channel_->enableReading(); 
+
+    connectionCallback_(shared_from_this());
+}
+
+void Connection::connectDestroyed(){
+    if (state_ == kConnected)
+    {
+        setState(kDisconnected);
+        channel_->disableAll(); 
+        connectionCallback_(shared_from_this());
+    }
+    channel_->RemoveinChannel();
 }

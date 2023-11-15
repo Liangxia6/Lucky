@@ -4,9 +4,9 @@
 #include "EventLoop.h"
 #include "LuckyLog.h"
 
-const int Channel::keyNoneEvent = 0;
-const int Channel::keyReadEvent = EPOLLIN | EPOLLPRI;
-const int Channel::keyWriteEvent = EPOLLOUT;
+const int Channel::kNoneEvent = 0;
+const int Channel::kReadEvent = EPOLLIN | EPOLLPRI;
+const int Channel::kWriteEvent = EPOLLOUT;
 
 Channel::Channel(EventLoop *loop, int fd)
     : loop_(loop)
@@ -40,40 +40,40 @@ void Channel::HandleEvent(TimeStamp receiveTime)
 }
 
 void Channel::enableReading() { 
-    events_ |= keyReadEvent; 
+    events_ |= kReadEvent; 
     UpdateinChannel(); 
 }
 
 void Channel::disableReading() {
-    events_ &= ~keyReadEvent; 
+    events_ &= ~kReadEvent; 
     UpdateinChannel(); 
 }
 
 void Channel::enableWriting() { 
-    events_ |= keyWriteEvent; 
+    events_ |= kWriteEvent; 
     UpdateinChannel(); 
 }
 
 void Channel::disableWriting() {
-    events_ &= ~keyWriteEvent;
+    events_ &= ~kWriteEvent;
     UpdateinChannel();
 }
 
 void Channel::disableAll() {
-    events_ =  keyNoneEvent;
+    events_ =  kNoneEvent;
     UpdateinChannel();
 }
 
 bool Channel::isNoneEvent() const{
-    return events_ == keyNoneEvent;
+    return events_ == kNoneEvent;
 }
 
 bool Channel::isWriting() const{
-    return events_ & keyWriteEvent;
+    return events_ & kWriteEvent;
 }
 
 bool Channel::isReading() const{
-    return events_ & keyReadEvent;
+    return events_ & kReadEvent;
 }
 
 

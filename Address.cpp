@@ -1,6 +1,6 @@
 #include <cstring>
 
-#include "Addresss.h"
+#include "Address.h"
 
 Address::Address(uint16_t port, std::string ip){
     memset(&addr_, 0, sizeof(addr_));
@@ -14,7 +14,6 @@ Address::Address(const sockaddr_in &addr)
 
 }
 
-Address::~Address() = default;
 
 std::string Address::toIp() const{
     char buff[64] = {};

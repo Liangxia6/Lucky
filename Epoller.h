@@ -8,6 +8,9 @@
 #include "Channel.h"
 #include "EventLoop.h"
 
+class Channel;
+class EventLoop;
+
 class Epoller{
 
 public:
@@ -27,7 +30,7 @@ public:
 
 private:
 
-    static const int keyEventListSize = 16;
+    static const int kEventListSize = 16;
 
     void fillActiveChannels(int, ChannelList *) const;
     void update(int, Channel *);

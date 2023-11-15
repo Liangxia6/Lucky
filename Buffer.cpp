@@ -6,10 +6,10 @@
 #include <sys/uio.h>
 #include <unistd.h>
 
-explicit Buffer::Buffer(size_t initalSize = keyInitialSize)
-    : buffer_(keyCheapPrepend + initalSize)
-    , readerIndex_(keyCheapPrepend)
-    , writerIndex_(keyCheapPrepend)
+Buffer::Buffer(size_t initalSize)
+    : buffer_(kCheapPrepend + initalSize)
+    , readerIndex_(kCheapPrepend)
+    , writerIndex_(kCheapPrepend)
 {
 
 }
@@ -39,8 +39,8 @@ void Buffer::retrieve(size_t len){
 }
 
 void Buffer::retrieveAll(){
-    readerIndex_ = keyCheapPrepend;
-    writerIndex_ = keyCheapPrepend;
+    readerIndex_ = kCheapPrepend;
+    writerIndex_ = kCheapPrepend;
 }
 
 std::string Buffer::retrieveAllAsString() { 
@@ -117,14 +117,14 @@ const char *Buffer::begin() const {
 }
 
 void Buffer::makeSpace(size_t len){
-    if (writableBytes() + prependableBytes() < len + keyCheapPrepend){
+    if (writableBytes() + prependableBytes() < len + kCheapPrepend){
         buffer_.resize(writerIndex_ + len);
     } else {
         size_t readable = readableBytes();
         std::copy(begin() + readerIndex_,
                 begin() + writerIndex_, 
-                begin() + keyCheapPrepend);
-        readerIndex_ = keyCheapPrepend;
+                begin() + kCheapPrepend);
+        readerIndex_ = kCheapPrepend;
         writerIndex_ = readerIndex_ + readable;
     }
 }

@@ -17,7 +17,7 @@ void ThreadPool::setThread_num(int num){
     threads_num_ = num;
 }
 
-void ThreadPool::start(const ThreadInitCallback &cb = ThreadInitCallback()){
+void ThreadPool::start(const ThreadInitCallback &cb){
     is_start_ = true;
     for (int i = 0; i < threads_num_; ++i){
         char buf[name_.size() + 32];

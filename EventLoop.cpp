@@ -9,7 +9,7 @@
 
 __thread EventLoop *t_LoopinThread = nullptr;
 
-const int keyEpollTime = 10000;
+const int kEpollTime = 10000;
 
 int createEventfd() {
     int efd = eventfd(0, EFD_NONBLOCK|EFD_CLOEXEC );
@@ -35,7 +35,7 @@ EventLoop::EventLoop()
     } else {
         t_LoopinThread = this;
     }
-    wakeupChannel_->setReadCallback(std::bind(&HandelRead, this));
+    wakeupChannel_->setReadCallback(std::bind(&EventLoop::HandelRead, this));
     wakeupChannel_->enableReading(); 
 }
 
@@ -55,7 +55,7 @@ void EventLoop::loop(){
     while (!quit_){
         activeChannels_.clear();
         epollReturnTime_ = epoller_->epoll(
-            keyEpollTime, &activeChannels_);
+            kEpollTime, &activeChannels_);
         
         for (Channel *channel : activeChannels_){
             channel->HandleEvent(epollReturnTime_);

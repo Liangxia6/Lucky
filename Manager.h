@@ -8,6 +8,8 @@
 #include "EventLoop.h"
 #include "Thread.h"
 
+class EventLoop;
+
 class Manager{
 
 public:

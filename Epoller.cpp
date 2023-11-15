@@ -5,14 +5,14 @@
 #include "Epoller.h"
 #include "LuckyLog.h"
 
-const int keyNew = -1;    // 某个channel还没添加至Poller
-const int keyAdded = 1;   // 某个channel已经添加至Poller
-const int keyDeleted = 2; // 某个channel已经从Poller删除
+const int kNew = -1;    // 某个channel还没添加至Poller
+const int kAdded = 1;   // 某个channel已经添加至Poller
+const int kDeleted = 2; // 某个channel已经从Poller删除
 
 Epoller::Epoller(EventLoop *loop) 
     : ownerLoop_(loop)
     , epollfd_(epoll_create1(EPOLL_CLOEXEC))
-    , events_(keyEventListSize){
+    , events_(kEventListSize){
     if (epollfd_ < 0)
     {
         LOG_FATAL("epoll_create error:%d \n", errno);
@@ -60,18 +60,18 @@ Epoller *Epoller::newEpoller(EventLoop *loop) {
 void Epoller::UpdateinEpoller(Channel *channel) {
     const int index = channel->getIndex();
     LOG_INFOM("func=%s => fd=%d events=%d index=%d\n", __FUNCTION__, channel->getFd(), channel->getEvents(), index);
-    if (index == keyNew || index == keyDeleted){
-        if (index == keyNew){
+    if (index == kNew || index == kDeleted){
+        if (index == kNew){
         int fd = channel->getFd();
         channels_[fd] = channel;
         }
-        channel->setIndex(keyAdded);
+        channel->setIndex(kAdded);
         update(EPOLL_CTL_ADD, channel);
     } else {
         int fd = channel->getFd();
         if (channel->isNoneEvent()){
             update(EPOLL_CTL_DEL, channel);
-            channel->setIndex(keyDeleted);
+            channel->setIndex(kDeleted);
         } else {
             update(EPOLL_CTL_MOD, channel);
         }
@@ -86,10 +86,10 @@ void Epoller::RemoveinEpoller(Channel *channel) {
     channels_.erase(fd);
 
     int index = channel->getIndex();
-    if (index == keyAdded){
+    if (index == kAdded){
         update(EPOLL_CTL_DEL, channel);    
     }
-    channel->setIndex(keyNew);
+    channel->setIndex(kNew);
 }
 
 void Epoller::fillActiveChannels(int events_num, ChannelList *activeChannels) const{

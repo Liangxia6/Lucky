@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Addresss.h"
+#include "Address.h"
+
+class Address;
 
 class Socket{
 

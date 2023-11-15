@@ -7,10 +7,10 @@ class Buffer{
 
 public:
     
-    static const size_t keyCheapPrepend = 8;
-    static const size_t keyInitialSize = 1024;
+    static const size_t kCheapPrepend = 8;
+    static const size_t kInitialSize = 1024;
 
-    explicit Buffer(size_t = keyInitialSize);
+    explicit Buffer(size_t = kInitialSize);
 
     size_t readableBytes() const;
     size_t writableBytes() const;

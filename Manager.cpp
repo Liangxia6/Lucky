@@ -1,7 +1,6 @@
 #include "Manager.h"
 
-Manager::Manager(const ThreadInitCallback &cb = ThreadInitCallback(),
-            const std::string &name = std::string())
+Manager::Manager(const ThreadInitCallback &cb, const std::string &name)
     : is_exit_(false)
     , loop_(nullptr)
     , thread_(std::bind(&Manager::threadFunc, this), name)

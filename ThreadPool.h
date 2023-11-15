@@ -8,6 +8,9 @@
 #include "EventLoop.h"
 #include "Manager.h"
 
+class EventLoop;
+class Manager;
+
 class ThreadPool{
 
 public:

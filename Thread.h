@@ -3,6 +3,7 @@
 #include <functional>
 #include <string>
 #include <atomic>
+#include <thread>
 
 class Thread{
 

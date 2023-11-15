@@ -5,13 +5,9 @@
 
 namespace getThreadID
 {
-    __thread int t_cachedTid = 0;
+    extern __thread int t_cachedTid;
 
-    void cacheTid(){
-        if (t_cachedTid == 0){
-            t_cachedTid = static_cast<pid_t>(::syscall(SYS_gettid));
-        }
-    }
+    void cacheTid(); 
 
     inline int tid() {
         if (__builtin_expect(t_cachedTid == 0, 0)) {
