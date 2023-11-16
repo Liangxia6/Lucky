@@ -31,11 +31,11 @@ private:
     {
         if (conn->is_connect())
         {
-            LOG_INFOM("Connection UP : %s", conn->peerAddress().toIpPort().c_str());
+            log<INFOM>("Connection UP : %s", conn->peerAddress().toIpPort().c_str());
         }
         else
         {
-            LOG_INFOM("Connection DOWN : %s", conn->peerAddress().toIpPort().c_str());
+            log<INFOM>("Connection DOWN : %s", conn->peerAddress().toIpPort().c_str());
         }
     }
 

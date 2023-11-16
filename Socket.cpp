@@ -24,13 +24,13 @@ void Socket::bindAddress(const Address &localaddr){
     if (0 != ::bind(sockfd_, 
         (sockaddr *)localaddr.getSockAddr(), 
         sizeof(sockaddr_in))){
-        LOG_FATAL("bind sockfd:%d fail\n", sockfd_);
+        log<FATAL>("bind sockfd:%d fail\n", sockfd_);
     }
 }
 
 void Socket::listen(){
     if (0 != ::listen(sockfd_, 1024)){
-        LOG_FATAL("listen sockfd:%d fail\n", sockfd_);
+        log<FATAL>("listen sockfd:%d fail\n", sockfd_);
     }
 }
 
@@ -48,7 +48,7 @@ int Socket::accept(Address *peeraddr){
 
 void Socket::shutdownWrite(){
     if (::shutdown(sockfd_, SHUT_WR) < 0){
-        LOG_ERROR("shutdownWrite error");
+        log<ERROR>("shutdownWrite error");
     }
 }
 

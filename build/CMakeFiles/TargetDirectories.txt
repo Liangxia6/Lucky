@@ -1,3 +1,0 @@
-/home/hong/Desktop/Lucky/build/CMakeFiles/edit_cache.dir
-/home/hong/Desktop/Lucky/build/CMakeFiles/rebuild_cache.dir
-/home/hong/Desktop/Lucky/build/CMakeFiles/Lucky.dir

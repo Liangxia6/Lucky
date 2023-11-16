@@ -18,12 +18,12 @@ class Server{
 
 public:
 
-    using TcpConnectionPtr = std::shared_ptr<Connection>;
-    using ConnectionCallback = std::function<void(const TcpConnectionPtr &)>;
-    using CloseCallback = std::function<void(const TcpConnectionPtr &)>;
-    using WriteCompleteCallback = std::function<void(const TcpConnectionPtr &)>;
-    using HighWaterMarkCallback = std::function<void(const TcpConnectionPtr &, size_t)>;
-    using MessageCallback = std::function<void(const TcpConnectionPtr &, Buffer *, TimeStamp)>;
+    using ConnectionPtr = std::shared_ptr<Connection>;
+    using ConnectionCallback = std::function<void(const ConnectionPtr &)>;
+    using CloseCallback = std::function<void(const ConnectionPtr &)>;
+    using WriteCompleteCallback = std::function<void(const ConnectionPtr &)>;
+    using HighWaterMarkCallback = std::function<void(const ConnectionPtr &, size_t)>;
+    using MessageCallback = std::function<void(const ConnectionPtr &, Buffer *, TimeStamp)>;
 
     using ThreadInitCallback = std::function<void(EventLoop *)>;
 
@@ -49,11 +49,12 @@ public:
     void start();
 
 private:
-    void newConnection(int sockfd, const Address &peerAddr);
-    void removeConnection(const TcpConnectionPtr &conn);
-    void removeConnectionInLoop(const TcpConnectionPtr &conn);
 
-    using ConnectionMap = std::unordered_map<std::string, TcpConnectionPtr>;
+    void newConnection(int sockfd, const Address &peerAddr);
+    void removeConnection(const ConnectionPtr &conn);
+    void removeConnectionInLoop(const ConnectionPtr &conn);
+
+    using ConnectionMap = std::unordered_map<std::string, ConnectionPtr>;
 
     EventLoop *loop_;
 

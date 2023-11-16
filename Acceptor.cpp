@@ -9,7 +9,7 @@
 static int createNonblockFd(){
     int sockfd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, IPPROTO_TCP);
     if (sockfd < 0){
-        LOG_FATAL("%s:%s:%d listen socket create err:%d\n", __FILE__, __FUNCTION__, __LINE__, errno);
+        log<FATAL>("%s:%s:%d listen socket create err:%d\n", __FILE__, __FUNCTION__, __LINE__, errno);
     }
     return sockfd;
 }
@@ -54,9 +54,9 @@ void Acceptor::HandleRead(){
             ::close(connfd);
         }
     } else {
-        LOG_ERROR("%s:%s:%d accept err:%d\n", __FILE__, __FUNCTION__, __LINE__, errno);
+        log<ERROR>("%s:%s:%d accept err:%d\n", __FILE__, __FUNCTION__, __LINE__, errno);
         if (errno == EMFILE){
-            LOG_ERROR("%s:%s:%d sockfd reached limit\n", __FILE__, __FUNCTION__, __LINE__);
+            log<ERROR>("%s:%s:%d sockfd reached limit\n", __FILE__, __FUNCTION__, __LINE__);
         }
     }
 }

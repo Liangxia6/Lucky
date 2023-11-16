@@ -10,7 +10,7 @@ static EventLoop *CheckLoopNotNull(EventLoop *loop)
 {
     if (loop == nullptr)
     {
-        LOG_FATAL("%s:%s:%d mainLoop is null!\n", __FILE__, __FUNCTION__, __LINE__);
+        log<FATAL>("%s:%s:%d mainLoop is null!\n", __FILE__, __FUNCTION__, __LINE__);
     }
     return loop;
 }
@@ -39,8 +39,8 @@ Server::~Server()
 {
     for(auto &item : connections_)
     {
-        TcpConnectionPtr conn(item.second);
-        item.second.reset();    // 把原始的智能指针复位 让栈空间的TcpConnectionPtr conn指向该对象 当conn出了其作用域 即可释放智能指针指向的对象
+        ConnectionPtr conn(item.second);
+        item.second.reset();    // 把原始的智能指针复位 让栈空间的ConnectionPtr conn指向该对象 当conn出了其作用域 即可释放智能指针指向的对象
         // 销毁连接
         conn->getLoop()->RuninLoop(
             std::bind(&Connection::connectDestroyed, conn));
@@ -73,7 +73,7 @@ void Server::newConnection(int sockfd, const Address &peerAddr)
     ++nextConnId_;  // 这里没有设置为原子类是因为其只在mainloop中执行 不涉及线程安全问题
     std::string connName = name_ + buf;
 
-    LOG_INFOM("TcpServer::newConnection [%s] - new connection [%s] from %s\n",
+    log<INFOM>("TcpServer::newConnection [%s] - new connection [%s] from %s\n",
             name_.c_str(), connName.c_str(), peerAddr.toIpPort().c_str());
     
     // 通过sockfd获取其绑定的本机的ip地址和端口信息
@@ -82,11 +82,11 @@ void Server::newConnection(int sockfd, const Address &peerAddr)
     socklen_t addrlen = sizeof(local);
     if(::getsockname(sockfd, (sockaddr *)&local, &addrlen) < 0)
     {
-        LOG_ERROR("sockets::getLocalAddr");
+        log<ERROR>("sockets::getLocalAddr");
     }
 
     Address localAddr(local);
-    TcpConnectionPtr conn(new Connection(ioLoop,
+    ConnectionPtr conn(new Connection(ioLoop,
                                             connName,
                                             sockfd,
                                             localAddr,
@@ -105,15 +105,15 @@ void Server::newConnection(int sockfd, const Address &peerAddr)
         std::bind(&Connection::connectEstablished, conn));
 }
 
-void Server::removeConnection(const TcpConnectionPtr &conn)
+void Server::removeConnection(const ConnectionPtr &conn)
 {
     loop_->RuninLoop(
         std::bind(&Server::removeConnectionInLoop, this, conn));
 }
 
-void Server::removeConnectionInLoop(const TcpConnectionPtr &conn)
+void Server::removeConnectionInLoop(const ConnectionPtr &conn)
 {
-    LOG_INFOM("TcpServer::removeConnectionInLoop [%s] - connection %s\n",
+    log<INFOM>("TcpServer::removeConnectionInLoop [%s] - connection %s\n",
             name_.c_str(), conn->getName().c_str());
 
     connections_.erase(conn->getName());

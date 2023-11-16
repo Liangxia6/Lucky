@@ -1,17 +1,11 @@
-#include <functional>
-#include <string>
-#include <errno.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <string.h>
-#include <netinet/tcp.h>
-
 #include "Connection.h"
-#include "LuckyLog.h"
 
-static EventLoop *CheckLoop(EventLoop *loop){
-    if (loop == nullptr){
-        LOG_FATAL("%s:%s:%d mainLoop is null!\n", __FILE__, __FUNCTION__, __LINE__);
+
+static EventLoop *CheckLoop(EventLoop *loop)
+{
+    if (loop == nullptr)
+    {
+        log<FATAL>("%s:%s:%d mainLoop is null!\n", __FILE__, __FUNCTION__, __LINE__);
     }
     return loop;
 }
@@ -29,43 +23,25 @@ Connection::Connection(EventLoop *loop,
     , channel_(new Channel(loop, sockfd))
     , localAddr_(localAddr)
     , peerAddr_(peerAddr)
-    , highWaterMark_(64 * 1024 * 1024) {
+    , highWaterMark_(64 * 1024 * 1024) 
+{
     channel_->setReadCallback(std::bind(&Connection::handleRead, this, std::placeholders::_1));
     channel_->setWriteCallback(std::bind(&Connection::handleWrite, this));
     channel_->setCloseCallback(std::bind(&Connection::handleClose, this));
     channel_->setErrorCallback(std::bind(&Connection::handleError, this));
 
-    LOG_INFOM("TcpConnection::ctor[%s] at fd=%d\n", name_.c_str(), sockfd);
+    log<INFOM>("TcpConnection::ctor[%s] at fd=%d\n", name_.c_str(), sockfd);
 
     socket_->setKeepAlive(true);
 }
 
-Connection::~Connection(){
-    LOG_INFOM("Connection::dtor[%s] at fd=%d state=%d\n", name_.c_str(), channel_->getFd(), (int)state_);
+Connection::~Connection()
+{
+    log<INFOM>("Connection::dtor[%s] at fd=%d state=%d\n", name_.c_str(), channel_->getFd(), (int)state_);
 }
 
-EventLoop *Connection::getLoop() const{
-    return loop_;
-}
-
-const std::string &Connection::getName() const{
-    return name_;
-}
-
-const Address &Connection::localAddress() const{
-    return localAddr_;
-}
-
-const Address &Connection::peerAddress() const{
-    return peerAddr_;
-}
-
-bool Connection::is_connect() const{
-    return state_ == kConnected;
-}
-
-
-void Connection::send(std::string &buff){
+void Connection::send(std::string &buff)
+{
     if (state_ == kConnected){
         if(loop_->isLoopThread()){
             ssize_t nwrote = 0;
@@ -73,19 +49,19 @@ void Connection::send(std::string &buff){
             size_t remaining = buff.size();
             bool faultError = false;
             if (state_ == kDisconnected) {
-                LOG_ERROR("disconnected, give up writing");
+                log<ERROR>("disconnected, give up writing");
             }
             if (!channel_->isWriting() && outputBuffer_.readableBytes() == 0){
                 nwrote = write(channel_->getFd(), buff.c_str(), len);
                 if (nwrote >= 0){
                     remaining = len - nwrote;
                     if (remaining == 0 && writeCompleteCallback_){
-                        loop_->QueueinLoop(std::bind(writeCompleteCallback_, shared_from_this()));
+                        loop_->queueinLoop(std::bind(writeCompleteCallback_, shared_from_this()));
                     }
                 } else {
                     nwrote = 0;
                     if (errno != EWOULDBLOCK) {
-                        LOG_ERROR("TcpConnection::sendInLoop");
+                        log<ERROR>("TcpConnection::sendInLoop");
                         if (errno == EPIPE || errno == ECONNRESET) {
                             faultError = true;
                         }
@@ -96,7 +72,7 @@ void Connection::send(std::string &buff){
                 size_t oldLen = outputBuffer_.readableBytes();
                 if (oldLen + remaining >= highWaterMark_ && oldLen < highWaterMark_ && highWaterMarkCallback_)
                 {
-                    loop_->QueueinLoop(
+                    loop_->queueinLoop(
                 std::bind(highWaterMarkCallback_, shared_from_this(), oldLen + remaining));
                 }
                 outputBuffer_.append((char *)buff.c_str() + nwrote, remaining);
@@ -113,96 +89,92 @@ void Connection::send(std::string &buff){
 
 }
 
-void Connection::shutdown(){
-    if (state_ == kConnected){
+void Connection::shutdown()
+{
+    if (state_ == kConnected)
+    {
         setState(kDisconnecting);
-        loop_->RuninLoop(
+        loop_->runinLoop(
             std::bind(&Connection::shutdownInLoop, this));
     }
 }
 
-void Connection::shutdownInLoop(){
-    if (!channel_->isWriting()) {
+void Connection::shutdownInLoop()
+{
+    if (!channel_->isWriting()) 
+    {
         socket_->shutdownWrite();
     }
 }
 
 
-void Connection::setConnectionCallback(const ConnectionCallback &cb){
-    connectionCallback_ = cb;
-}
-
-void Connection::setMessageCallback(const MessageCallback &cb){
-    messageCallback_ = cb;
-}
-
-void Connection::setWriteCompleteCallback(const WriteCompleteCallback &cb){
-    writeCompleteCallback_ = cb;
-}
-
-void Connection::setCloseCallback(const CloseCallback &cb){ 
-    closeCallback_ = cb; 
-}
-
-void Connection::setHighWaterMarkCallback(const HighWaterMarkCallback &cb, size_t highWaterMark){ 
-    highWaterMarkCallback_ = cb; highWaterMark_ = highWaterMark; 
-}
-
-void Connection::handleRead(TimeStamp receiveTime){
+void Connection::handleRead(TimeStamp receiveTime)
+{
     int savedErrno = 0;
     ssize_t n = inputBuffer_.readFd(channel_->getFd(), &savedErrno);
-    if(n > 0){
+    if(n > 0)
+    {
         messageCallback_(shared_from_this(), &inputBuffer_, receiveTime);
-    } else if (n == 0){
+    }
+    else if (n == 0)
+    {
         handleClose();
-    } else {
+    }
+    else
+    {
         errno = savedErrno;
-        LOG_ERROR("TcpConnection::handleRead");
+        log<ERROR>("TcpConnection::handleRead");
         handleError();
     }
 }
 
-void Connection::handleWrite(){
-    if (channel_->isWriting()){
+void Connection::handleWrite()
+{
+    if (channel_->isWriting())
+    {
         int savedErrno = 0;
         ssize_t n = outputBuffer_.writeFd(channel_->getFd(), &savedErrno);
         if (n > 0)
         {
             outputBuffer_.retrieve(n);
-            if (outputBuffer_.readableBytes() == 0){
+            if (outputBuffer_.readableBytes() == 0)
+            {
                 channel_->disableWriting();
-                if (writeCompleteCallback_){
-                    loop_->QueueinLoop(
+                if (writeCompleteCallback_)
+                {
+                    loop_->queueinLoop(
                             std::bind(writeCompleteCallback_, shared_from_this()));
                 }
                 if (state_ == kDisconnecting)
-                    {
+                {
                         shutdownInLoop(); 
-                    }
                 }
-                else
+            }
+            else
             {
-                LOG_ERROR("TcpConnection::handleWrite");
+                log<ERROR>("TcpConnection::handleWrite");
             }
         }
         else
         {
-            LOG_ERROR("TcpConnection fd=%d is down, no more writing", channel_->getFd());
+            log<ERROR>("TcpConnection fd=%d is down, no more writing", channel_->getFd());
         }
     }
 }
 
-void Connection::handleClose(){
-    LOG_INFOM("TcpConnection::handleClose fd=%d state=%d\n", channel_->getFd(), (int)state_);
+void Connection::handleClose()
+{
+    log<INFOM>("TcpConnection::handleClose fd=%d state=%d\n", channel_->getFd(), (int)state_);
     setState(kDisconnected);
     channel_->disableAll();
 
-    TcpConnectionPtr connPtr(shared_from_this());
+    ConnectionPtr connPtr(shared_from_this());
     connectionCallback_(connPtr);
     closeCallback_(connPtr);  
 }
 
-void Connection::handleError(){
+void Connection::handleError()
+{
     int optval;
     socklen_t optlen = sizeof optval;
     int err = 0;
@@ -214,14 +186,16 @@ void Connection::handleError(){
     {
         err = optval;
     }
-    LOG_ERROR("TcpConnection::handleError name:%s - SO_ERROR:%d\n", name_.c_str(), err);
+    log<ERROR>("TcpConnection::handleError name:%s - SO_ERROR:%d\n", name_.c_str(), err);
 }
 
-void Connection::setState(StateE state){
+void Connection::setState(StateE state)
+{
     state_ = state;
 }
 
-void Connection::connectEstablished(){
+void Connection::connectEstablished()
+{
     setState(kConnected);
     channel_->tie(shared_from_this());
     channel_->enableReading(); 
@@ -229,12 +203,63 @@ void Connection::connectEstablished(){
     connectionCallback_(shared_from_this());
 }
 
-void Connection::connectDestroyed(){
+void Connection::connectDestroyed()
+{
     if (state_ == kConnected)
     {
         setState(kDisconnected);
         channel_->disableAll(); 
         connectionCallback_(shared_from_this());
     }
-    channel_->RemoveinChannel();
+    channel_->remove();
+}
+
+EventLoop *Connection::getLoop() const
+{
+    return loop_;
+}
+
+const std::string &Connection::getName() const
+{
+    return name_;
+}
+
+const Address &Connection::getLocalAddress() const
+{
+    return localAddr_;
+}
+
+const Address &Connection::getPeerAddress() const
+{
+    return peerAddr_;
+}
+
+bool Connection::isConnect() const
+{
+    return state_ == kConnected;
+}
+
+void Connection::setConnectionCallback(const ConnectionCallback &cb)
+{
+    connectionCallback_ = cb;
+}
+
+void Connection::setMessageCallback(const MessageCallback &cb)
+{
+    messageCallback_ = cb;
+}
+
+void Connection::setWriteCompleteCallback(const WriteCompleteCallback &cb)
+{
+    writeCompleteCallback_ = cb;
+}
+
+void Connection::setCloseCallback(const CloseCallback &cb)
+{ 
+    closeCallback_ = cb; 
+}
+
+void Connection::setHighWaterMarkCallback(const HighWaterMarkCallback &cb, size_t highWaterMark)
+{
+    highWaterMarkCallback_ = cb; highWaterMark_ = highWaterMark; 
 }

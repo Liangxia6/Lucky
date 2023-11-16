@@ -5,6 +5,7 @@
 
 namespace getThreadID
 {
+    //保存内核的tid,避免多次io
     extern __thread int t_cachedTid;
 
     void cacheTid(); 
