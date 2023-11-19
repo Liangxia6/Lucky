@@ -5,7 +5,9 @@
 #include <memory>
 #include <atomic>
 #include <unordered_map>
+#include <cstring>
 
+#include "LuckyLog.h"
 #include "EventLoop.h"
 #include "Acceptor.h"
 #include "Address.h"
@@ -14,64 +16,61 @@
 #include "Manager.h"
 #include "Buffer.h"
 
-class Server{
-
+class Server
+{
 public:
-
+    //定义callback
     using ConnectionPtr = std::shared_ptr<Connection>;
     using ConnectionCallback = std::function<void(const ConnectionPtr &)>;
-    using CloseCallback = std::function<void(const ConnectionPtr &)>;
     using WriteCompleteCallback = std::function<void(const ConnectionPtr &)>;
-    using HighWaterMarkCallback = std::function<void(const ConnectionPtr &, size_t)>;
     using MessageCallback = std::function<void(const ConnectionPtr &, Buffer *, TimeStamp)>;
-
     using ThreadInitCallback = std::function<void(EventLoop *)>;
 
+    //端口复用
     enum Option
     {
         kNoReusePort,
         kReusePort,
     };
 
-    Server(EventLoop *loop,
-            const Address &listenAddr,
-            const std::string &nameArg,
-            Option option = kNoReusePort);
+    Server(EventLoop *, const Address &, const std::string &, Option  = kNoReusePort);
     ~Server();
 
-    void setThreadInitCallback(const ThreadInitCallback &cb) { threadInitCallback_ = cb; }
-    void setConnectionCallback(const ConnectionCallback &cb) { connectionCallback_ = cb; }
-    void setMessageCallback(const MessageCallback &cb) { messageCallback_ = cb; }
-    void setWriteCompleteCallback(const WriteCompleteCallback &cb) { writeCompleteCallback_ = cb; }
+    //设置回调函数
+    void setThreadInitCallback(const ThreadInitCallback &);
+    void setConnectionCallback(const ConnectionCallback &);
+    void setMessageCallback(const MessageCallback &);
+    void setWriteCompleteCallback(const WriteCompleteCallback &);
 
-    void setThreadNum(int numThreads);
+    //设置开启的子线程数量
+    void setThreadNum(int );
 
+    //启动服务器
     void start();
 
 private:
 
-    void newConnection(int sockfd, const Address &peerAddr);
-    void removeConnection(const ConnectionPtr &conn);
-    void removeConnectionInLoop(const ConnectionPtr &conn);
+    //处理连接的函数群
+    void newConnection(int, const Address &);
+    void removeConnection(const ConnectionPtr &);
+    void removeConnectionInLoop(const ConnectionPtr &);
 
-    using ConnectionMap = std::unordered_map<std::string, ConnectionPtr>;
+    EventLoop *loop_;               //main中开启的主EventLoop
 
-    EventLoop *loop_;
+    const std::string ipPort_;      //传入的ip端口
+    const std::string name_;        //Server的名称
 
-    const std::string ipPort_;
-    const std::string name_;
+    std::atomic_int started_;   //指示符
+    int nextConnId_;            //指向下一链接的id
 
-    std::unique_ptr<Acceptor> acceptor_; 
-    std::shared_ptr<ThreadPool> threadPool_; 
+    std::unique_ptr<Acceptor> acceptor_;        //接收器,用于接收新连接
+    std::shared_ptr<ThreadPool> threadPool_;    //用于管理子线程
 
     ConnectionCallback connectionCallback_;      
     MessageCallback messageCallback_;            
     WriteCompleteCallback writeCompleteCallback_;
+    ThreadInitCallback threadInitCallback_;     //EventLoop线程初始化的回调函数
 
-    ThreadInitCallback threadInitCallback_;
-
-    std::atomic_int started_;
-
-    int nextConnId_;
-    ConnectionMap connections_;
+    using ConnectionMap = std::unordered_map<std::string, ConnectionPtr>;
+    ConnectionMap connections_;                 //保存所有连接
 };

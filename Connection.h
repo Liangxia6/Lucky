@@ -71,16 +71,16 @@ private:
         kDisconnecting          //正在断开连接
     };
     //设置连接状态
-    void setState(StateE state);
+    void setState(StateE);
 
     //注册到channel上有事件发生时,回调下类函数
-    void handleRead(TimeStamp receiveTime);
+    void handleRead(TimeStamp);
     void handleWrite();
     void handleClose();
     void handleError();
 
     //在自己的EventLoop中发送数据
-    void sendInLoop(const void *data, size_t len);
+    void sendinLoop(const void *, size_t);
     //在自己的EventLoop中关闭连接
     void shutdownInLoop();
 

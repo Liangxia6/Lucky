@@ -1,7 +1,12 @@
 #pragma once
 
 #include <functional>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <errno.h>
+#include <unistd.h>
 
+#include "LuckyLog.h"
 #include "Socket.h"
 #include "Channel.h"
 #include "EventLoop.h"
@@ -10,10 +15,18 @@
 class EventLoop;
 class Address;
 
-class Acceptor{
+/**
+ * @brief 接收器类
+ * 
+ * 运行在baseLoop中
+ * TcpServer发现Acceptor有一个新连接，则将此channel分发给一个subLoop
+*/
+class Acceptor
+{
 
 public:
 
+    //接收新连接的回调
     using NewConnectionCallback = std::function<void(int sockfd, const Address &)>;
     
     Acceptor(EventLoop *, const Address &, bool);
@@ -21,18 +34,18 @@ public:
 
     void setNewConnectionCallback(const NewConnectionCallback &);
 
-    bool is_listen() const;
+    bool isListen() const;
     void listen();
 
 private:
 
-    void HandleRead();
+    void handleRead();
 
     bool is_listen_;
 
     Socket acceptSocket_;
     Channel acceptChannel_;
-    EventLoop *loop_; 
-    NewConnectionCallback NewConnectionCallback_;
+    EventLoop *loop_;           //主线程
+    NewConnectionCallback newConnectionCallback_;
 
 };

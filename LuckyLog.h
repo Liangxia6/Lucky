@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cstdarg>
 
+#include "TimeStamp.h"
+
 //日志级别
 enum LogLevel
 {

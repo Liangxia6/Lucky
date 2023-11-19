@@ -1,5 +1,4 @@
 #include "LuckyLog.h"
-#include "TimeStamp.h"
 
 // 获取日志唯一的实例对象 单例
 LuckyLog &LuckyLog::LogSingleton()
