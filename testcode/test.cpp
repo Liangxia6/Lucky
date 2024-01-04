@@ -1,5 +1,5 @@
 #include <string>
-
+#include <iostream>
 #include <Lucky/Server.h>
 #include <Lucky/LuckyLog.h>
 
@@ -29,19 +29,21 @@ private:
     // 连接建立或断开的回调函数
     void onConnection(const std::shared_ptr<Connection> &conn)   
     {
-        if (conn->is_connect())
+        if (conn->isConnect())
         {
-            log<INFOM>("Connection UP : %s", conn->peerAddress().toIpPort().c_str());
+            std::cout<<"111"<<std::endl;
+            log<INFOM>("Connection UP : %s", conn->getPeerAddress().toIpPort().c_str());
         }
         else
         {
-            log<INFOM>("Connection DOWN : %s", conn->peerAddress().toIpPort().c_str());
+            log<INFOM>("Connection DOWN : %s", conn->getPeerAddress().toIpPort().c_str());
         }
     }
 
     // 可读写事件回调
     void onMessage(const std::shared_ptr<Connection> &conn, Buffer *buf, TimeStamp time)
     {
+        std::cout<<"222"<<std::endl;
         std::string msg = buf->retrieveAllAsString();
         conn->send(msg);
         // conn->shutdown();   // 关闭写端 底层响应EPOLLHUP => 执行closeCallback_

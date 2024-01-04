@@ -3,6 +3,9 @@
 #include <unistd.h>
 #include <sys/syscall.h>
 
+/**
+ * 
+*/
 namespace getThreadID
 {
     //保存内核的tid,避免多次io

@@ -11,6 +11,9 @@
 class EventLoop;
 class Manager;
 
+/**
+ * 
+*/
 class ThreadPool
 {
 public:

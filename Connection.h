@@ -22,6 +22,9 @@ class Channel;
 class EventLoop;
 class Socket;
 
+/**
+ * 
+*/
 class Connection : public std::enable_shared_from_this<Connection>
 {
 public:

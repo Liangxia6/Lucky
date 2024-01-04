@@ -15,7 +15,7 @@ class EventLoop;
  * @brief 通道类
  * 
  * 封装了fd,引入回调函数
- * Channel的生命周期和TcpConnection一样长，因为Channel是TcpConnection的成员，
+ * Channel的生命周期和Connection一样长，因为Channel是Connection的成员，
 */
 class Channel
 {

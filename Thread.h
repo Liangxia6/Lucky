@@ -10,6 +10,9 @@
 
 #include "getThreadID.h"
 
+/**
+ * 
+*/
 class Thread
 {
 public:
