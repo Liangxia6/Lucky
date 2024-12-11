@@ -1,6 +1,6 @@
 # Lucky : High-Concirrency C++ Network Library
 
-此项目为1.0版本，2.0将参照sylar实现分布式，更新日志系统，采用协程，丰富网络模块(封装IPv4，TCP，HTTP)，
+
 
 ## 项目简介
 
