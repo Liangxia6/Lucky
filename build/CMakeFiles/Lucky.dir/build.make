@@ -60,15 +60,15 @@ include CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/Channel.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/Channel.o: ../Channel.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Lucky.dir/Channel.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Channel.o -c /home/hong/Desktop/Lucky/Channel.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Channel.o -c /home/hong/Desktop/Lucky/Channel.cpp
 
 CMakeFiles/Lucky.dir/Channel.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/Channel.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Channel.cpp > CMakeFiles/Lucky.dir/Channel.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Channel.cpp > CMakeFiles/Lucky.dir/Channel.i
 
 CMakeFiles/Lucky.dir/Channel.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/Channel.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Channel.cpp -o CMakeFiles/Lucky.dir/Channel.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Channel.cpp -o CMakeFiles/Lucky.dir/Channel.s
 
 CMakeFiles/Lucky.dir/Channel.o.requires:
 
@@ -84,15 +84,15 @@ CMakeFiles/Lucky.dir/Channel.o.provides.build: CMakeFiles/Lucky.dir/Channel.o
 CMakeFiles/Lucky.dir/ThreadPool.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/ThreadPool.o: ../ThreadPool.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Lucky.dir/ThreadPool.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/ThreadPool.o -c /home/hong/Desktop/Lucky/ThreadPool.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/ThreadPool.o -c /home/hong/Desktop/Lucky/ThreadPool.cpp
 
 CMakeFiles/Lucky.dir/ThreadPool.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/ThreadPool.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/ThreadPool.cpp > CMakeFiles/Lucky.dir/ThreadPool.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/ThreadPool.cpp > CMakeFiles/Lucky.dir/ThreadPool.i
 
 CMakeFiles/Lucky.dir/ThreadPool.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/ThreadPool.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/ThreadPool.cpp -o CMakeFiles/Lucky.dir/ThreadPool.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/ThreadPool.cpp -o CMakeFiles/Lucky.dir/ThreadPool.s
 
 CMakeFiles/Lucky.dir/ThreadPool.o.requires:
 
@@ -108,15 +108,15 @@ CMakeFiles/Lucky.dir/ThreadPool.o.provides.build: CMakeFiles/Lucky.dir/ThreadPoo
 CMakeFiles/Lucky.dir/Epoller.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/Epoller.o: ../Epoller.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Lucky.dir/Epoller.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Epoller.o -c /home/hong/Desktop/Lucky/Epoller.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Epoller.o -c /home/hong/Desktop/Lucky/Epoller.cpp
 
 CMakeFiles/Lucky.dir/Epoller.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/Epoller.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Epoller.cpp > CMakeFiles/Lucky.dir/Epoller.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Epoller.cpp > CMakeFiles/Lucky.dir/Epoller.i
 
 CMakeFiles/Lucky.dir/Epoller.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/Epoller.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Epoller.cpp -o CMakeFiles/Lucky.dir/Epoller.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Epoller.cpp -o CMakeFiles/Lucky.dir/Epoller.s
 
 CMakeFiles/Lucky.dir/Epoller.o.requires:
 
@@ -132,15 +132,15 @@ CMakeFiles/Lucky.dir/Epoller.o.provides.build: CMakeFiles/Lucky.dir/Epoller.o
 CMakeFiles/Lucky.dir/TimeStamp.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/TimeStamp.o: ../TimeStamp.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Lucky.dir/TimeStamp.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/TimeStamp.o -c /home/hong/Desktop/Lucky/TimeStamp.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/TimeStamp.o -c /home/hong/Desktop/Lucky/TimeStamp.cpp
 
 CMakeFiles/Lucky.dir/TimeStamp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/TimeStamp.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/TimeStamp.cpp > CMakeFiles/Lucky.dir/TimeStamp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/TimeStamp.cpp > CMakeFiles/Lucky.dir/TimeStamp.i
 
 CMakeFiles/Lucky.dir/TimeStamp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/TimeStamp.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/TimeStamp.cpp -o CMakeFiles/Lucky.dir/TimeStamp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/TimeStamp.cpp -o CMakeFiles/Lucky.dir/TimeStamp.s
 
 CMakeFiles/Lucky.dir/TimeStamp.o.requires:
 
@@ -156,15 +156,15 @@ CMakeFiles/Lucky.dir/TimeStamp.o.provides.build: CMakeFiles/Lucky.dir/TimeStamp.
 CMakeFiles/Lucky.dir/Server.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/Server.o: ../Server.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Lucky.dir/Server.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Server.o -c /home/hong/Desktop/Lucky/Server.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Server.o -c /home/hong/Desktop/Lucky/Server.cpp
 
 CMakeFiles/Lucky.dir/Server.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/Server.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Server.cpp > CMakeFiles/Lucky.dir/Server.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Server.cpp > CMakeFiles/Lucky.dir/Server.i
 
 CMakeFiles/Lucky.dir/Server.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/Server.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Server.cpp -o CMakeFiles/Lucky.dir/Server.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Server.cpp -o CMakeFiles/Lucky.dir/Server.s
 
 CMakeFiles/Lucky.dir/Server.o.requires:
 
@@ -180,15 +180,15 @@ CMakeFiles/Lucky.dir/Server.o.provides.build: CMakeFiles/Lucky.dir/Server.o
 CMakeFiles/Lucky.dir/getThreadID.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/getThreadID.o: ../getThreadID.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Lucky.dir/getThreadID.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/getThreadID.o -c /home/hong/Desktop/Lucky/getThreadID.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/getThreadID.o -c /home/hong/Desktop/Lucky/getThreadID.cpp
 
 CMakeFiles/Lucky.dir/getThreadID.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/getThreadID.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/getThreadID.cpp > CMakeFiles/Lucky.dir/getThreadID.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/getThreadID.cpp > CMakeFiles/Lucky.dir/getThreadID.i
 
 CMakeFiles/Lucky.dir/getThreadID.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/getThreadID.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/getThreadID.cpp -o CMakeFiles/Lucky.dir/getThreadID.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/getThreadID.cpp -o CMakeFiles/Lucky.dir/getThreadID.s
 
 CMakeFiles/Lucky.dir/getThreadID.o.requires:
 
@@ -204,15 +204,15 @@ CMakeFiles/Lucky.dir/getThreadID.o.provides.build: CMakeFiles/Lucky.dir/getThrea
 CMakeFiles/Lucky.dir/Socket.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/Socket.o: ../Socket.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Lucky.dir/Socket.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Socket.o -c /home/hong/Desktop/Lucky/Socket.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Socket.o -c /home/hong/Desktop/Lucky/Socket.cpp
 
 CMakeFiles/Lucky.dir/Socket.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/Socket.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Socket.cpp > CMakeFiles/Lucky.dir/Socket.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Socket.cpp > CMakeFiles/Lucky.dir/Socket.i
 
 CMakeFiles/Lucky.dir/Socket.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/Socket.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Socket.cpp -o CMakeFiles/Lucky.dir/Socket.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Socket.cpp -o CMakeFiles/Lucky.dir/Socket.s
 
 CMakeFiles/Lucky.dir/Socket.o.requires:
 
@@ -228,15 +228,15 @@ CMakeFiles/Lucky.dir/Socket.o.provides.build: CMakeFiles/Lucky.dir/Socket.o
 CMakeFiles/Lucky.dir/Address.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/Address.o: ../Address.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Lucky.dir/Address.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Address.o -c /home/hong/Desktop/Lucky/Address.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Address.o -c /home/hong/Desktop/Lucky/Address.cpp
 
 CMakeFiles/Lucky.dir/Address.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/Address.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Address.cpp > CMakeFiles/Lucky.dir/Address.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Address.cpp > CMakeFiles/Lucky.dir/Address.i
 
 CMakeFiles/Lucky.dir/Address.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/Address.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Address.cpp -o CMakeFiles/Lucky.dir/Address.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Address.cpp -o CMakeFiles/Lucky.dir/Address.s
 
 CMakeFiles/Lucky.dir/Address.o.requires:
 
@@ -252,15 +252,15 @@ CMakeFiles/Lucky.dir/Address.o.provides.build: CMakeFiles/Lucky.dir/Address.o
 CMakeFiles/Lucky.dir/Buffer.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/Buffer.o: ../Buffer.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Lucky.dir/Buffer.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Buffer.o -c /home/hong/Desktop/Lucky/Buffer.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Buffer.o -c /home/hong/Desktop/Lucky/Buffer.cpp
 
 CMakeFiles/Lucky.dir/Buffer.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/Buffer.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Buffer.cpp > CMakeFiles/Lucky.dir/Buffer.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Buffer.cpp > CMakeFiles/Lucky.dir/Buffer.i
 
 CMakeFiles/Lucky.dir/Buffer.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/Buffer.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Buffer.cpp -o CMakeFiles/Lucky.dir/Buffer.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Buffer.cpp -o CMakeFiles/Lucky.dir/Buffer.s
 
 CMakeFiles/Lucky.dir/Buffer.o.requires:
 
@@ -276,15 +276,15 @@ CMakeFiles/Lucky.dir/Buffer.o.provides.build: CMakeFiles/Lucky.dir/Buffer.o
 CMakeFiles/Lucky.dir/Acceptor.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/Acceptor.o: ../Acceptor.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Lucky.dir/Acceptor.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Acceptor.o -c /home/hong/Desktop/Lucky/Acceptor.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Acceptor.o -c /home/hong/Desktop/Lucky/Acceptor.cpp
 
 CMakeFiles/Lucky.dir/Acceptor.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/Acceptor.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Acceptor.cpp > CMakeFiles/Lucky.dir/Acceptor.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Acceptor.cpp > CMakeFiles/Lucky.dir/Acceptor.i
 
 CMakeFiles/Lucky.dir/Acceptor.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/Acceptor.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Acceptor.cpp -o CMakeFiles/Lucky.dir/Acceptor.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Acceptor.cpp -o CMakeFiles/Lucky.dir/Acceptor.s
 
 CMakeFiles/Lucky.dir/Acceptor.o.requires:
 
@@ -300,15 +300,15 @@ CMakeFiles/Lucky.dir/Acceptor.o.provides.build: CMakeFiles/Lucky.dir/Acceptor.o
 CMakeFiles/Lucky.dir/Connection.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/Connection.o: ../Connection.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Lucky.dir/Connection.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Connection.o -c /home/hong/Desktop/Lucky/Connection.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Connection.o -c /home/hong/Desktop/Lucky/Connection.cpp
 
 CMakeFiles/Lucky.dir/Connection.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/Connection.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Connection.cpp > CMakeFiles/Lucky.dir/Connection.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Connection.cpp > CMakeFiles/Lucky.dir/Connection.i
 
 CMakeFiles/Lucky.dir/Connection.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/Connection.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Connection.cpp -o CMakeFiles/Lucky.dir/Connection.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Connection.cpp -o CMakeFiles/Lucky.dir/Connection.s
 
 CMakeFiles/Lucky.dir/Connection.o.requires:
 
@@ -324,15 +324,15 @@ CMakeFiles/Lucky.dir/Connection.o.provides.build: CMakeFiles/Lucky.dir/Connectio
 CMakeFiles/Lucky.dir/Manager.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/Manager.o: ../Manager.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Lucky.dir/Manager.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Manager.o -c /home/hong/Desktop/Lucky/Manager.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Manager.o -c /home/hong/Desktop/Lucky/Manager.cpp
 
 CMakeFiles/Lucky.dir/Manager.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/Manager.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Manager.cpp > CMakeFiles/Lucky.dir/Manager.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Manager.cpp > CMakeFiles/Lucky.dir/Manager.i
 
 CMakeFiles/Lucky.dir/Manager.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/Manager.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Manager.cpp -o CMakeFiles/Lucky.dir/Manager.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Manager.cpp -o CMakeFiles/Lucky.dir/Manager.s
 
 CMakeFiles/Lucky.dir/Manager.o.requires:
 
@@ -348,15 +348,15 @@ CMakeFiles/Lucky.dir/Manager.o.provides.build: CMakeFiles/Lucky.dir/Manager.o
 CMakeFiles/Lucky.dir/LuckyLog.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/LuckyLog.o: ../LuckyLog.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Lucky.dir/LuckyLog.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/LuckyLog.o -c /home/hong/Desktop/Lucky/LuckyLog.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/LuckyLog.o -c /home/hong/Desktop/Lucky/LuckyLog.cpp
 
 CMakeFiles/Lucky.dir/LuckyLog.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/LuckyLog.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/LuckyLog.cpp > CMakeFiles/Lucky.dir/LuckyLog.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/LuckyLog.cpp > CMakeFiles/Lucky.dir/LuckyLog.i
 
 CMakeFiles/Lucky.dir/LuckyLog.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/LuckyLog.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/LuckyLog.cpp -o CMakeFiles/Lucky.dir/LuckyLog.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/LuckyLog.cpp -o CMakeFiles/Lucky.dir/LuckyLog.s
 
 CMakeFiles/Lucky.dir/LuckyLog.o.requires:
 
@@ -372,15 +372,15 @@ CMakeFiles/Lucky.dir/LuckyLog.o.provides.build: CMakeFiles/Lucky.dir/LuckyLog.o
 CMakeFiles/Lucky.dir/Thread.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/Thread.o: ../Thread.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Lucky.dir/Thread.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Thread.o -c /home/hong/Desktop/Lucky/Thread.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/Thread.o -c /home/hong/Desktop/Lucky/Thread.cpp
 
 CMakeFiles/Lucky.dir/Thread.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/Thread.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Thread.cpp > CMakeFiles/Lucky.dir/Thread.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/Thread.cpp > CMakeFiles/Lucky.dir/Thread.i
 
 CMakeFiles/Lucky.dir/Thread.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/Thread.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Thread.cpp -o CMakeFiles/Lucky.dir/Thread.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/Thread.cpp -o CMakeFiles/Lucky.dir/Thread.s
 
 CMakeFiles/Lucky.dir/Thread.o.requires:
 
@@ -396,15 +396,15 @@ CMakeFiles/Lucky.dir/Thread.o.provides.build: CMakeFiles/Lucky.dir/Thread.o
 CMakeFiles/Lucky.dir/EventLoop.o: CMakeFiles/Lucky.dir/flags.make
 CMakeFiles/Lucky.dir/EventLoop.o: ../EventLoop.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Lucky.dir/EventLoop.o"
-	/usr/bin/g++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/EventLoop.o -c /home/hong/Desktop/Lucky/EventLoop.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/EventLoop.o -c /home/hong/Desktop/Lucky/EventLoop.cpp
 
 CMakeFiles/Lucky.dir/EventLoop.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/EventLoop.i"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/EventLoop.cpp > CMakeFiles/Lucky.dir/EventLoop.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/EventLoop.cpp > CMakeFiles/Lucky.dir/EventLoop.i
 
 CMakeFiles/Lucky.dir/EventLoop.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/EventLoop.s"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/EventLoop.cpp -o CMakeFiles/Lucky.dir/EventLoop.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/EventLoop.cpp -o CMakeFiles/Lucky.dir/EventLoop.s
 
 CMakeFiles/Lucky.dir/EventLoop.o.requires:
 
