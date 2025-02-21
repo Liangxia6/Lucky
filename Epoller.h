@@ -10,56 +10,53 @@
 
 #include "LuckyLog.h"
 #include "TimeStamp.h"
-#include "Channel.h"
+#include "Filed.h"
 #include "EventLoop.h"
 
-class Channel;
+class Filed;
 class EventLoop;
 
 /**
- * 
-*/
+ *
+ */
 class Epoller
 {
 public:
-
-    using ChannelList = std::vector<Channel *>;
+    using FiledList = std::vector<Filed *>;
 
     Epoller(EventLoop *);
     ~Epoller();
 
-    //底层函数epoll_wait,填充activeChannel列表
-    TimeStamp epoll(int, ChannelList *);
+    // 底层函数epoll_wait,填充activeFiled列表
+    TimeStamp epoll(int, FiledList *);
 
-    //判断channel是否已经注册到epoll
-    bool hasChannel(Channel *) const;
+    // 判断filed是否已经注册到epoll
+    bool hasFiled(Filed *) const;
     // //构造器
     // static Epoller *newEpoller(EventLoop *);
 
-    //调用私有的updateHel中的perepoll_ctl()
-    void update(Channel *);
-    //连接销毁时,移除epoll中的channel
-    void remove(Channel *);
+    // 调用私有的updateHel中的perepoll_ctl()
+    void update(Filed *);
+    // 连接销毁时,移除epoll中的filed
+    void remove(Filed *);
 
 private:
-
-    //默认监听数量,可扩容,二倍扩容法
+    // 默认监听数量,可扩容,二倍扩容法
     static const int kEventListSize = 16;
 
-    void fillActiveChannels(int, ChannelList *) const;
-    void updateHelper(int, Channel *);
+    void fillActiveFileds(int, FiledList *) const;
+    void updateHelper(int, Filed *);
 
     using EventList = std::vector<epoll_event>;
-    //存储epoll_wait返回的事件
+    // 存储epoll_wait返回的事件
     EventList events_;
 
-    using ChannelMap = std::unordered_map<int, Channel *>;
-    //存储Channel映射,通过socketfd找到channel
-    ChannelMap channels_;
+    using FiledMap = std::unordered_map<int, Filed *>;
+    // 存储Filed映射,通过socketfd找到filed
+    FiledMap fileds_;
 
-    //epoll_creat返回值
+    // epoll_creat返回值
     int epollfd_;
-    //绑定所属的EventLoop(Thread)
+    // 绑定所属的EventLoop(Thread)
     EventLoop *ownerLoop_;
-
 };

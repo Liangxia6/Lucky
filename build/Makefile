@@ -169,21 +169,6 @@ Buffer.s:
 .PHONY : Buffer.s
 
 # target to build an object file
-Channel.o:
-	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/Channel.o
-.PHONY : Channel.o
-
-# target to preprocess a source file
-Channel.i:
-	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/Channel.i
-.PHONY : Channel.i
-
-# target to generate assembly for a file
-Channel.s:
-	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/Channel.s
-.PHONY : Channel.s
-
-# target to build an object file
 Connection.o:
 	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/Connection.o
 .PHONY : Connection.o
@@ -227,6 +212,21 @@ EventLoop.i:
 EventLoop.s:
 	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/EventLoop.s
 .PHONY : EventLoop.s
+
+# target to build an object file
+Filed.o:
+	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/Filed.o
+.PHONY : Filed.o
+
+# target to preprocess a source file
+Filed.i:
+	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/Filed.i
+.PHONY : Filed.i
+
+# target to generate assembly for a file
+Filed.s:
+	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/Filed.s
+.PHONY : Filed.s
 
 # target to build an object file
 LuckyLog.o:
@@ -366,9 +366,6 @@ help:
 	@echo "... Buffer.o"
 	@echo "... Buffer.i"
 	@echo "... Buffer.s"
-	@echo "... Channel.o"
-	@echo "... Channel.i"
-	@echo "... Channel.s"
 	@echo "... Connection.o"
 	@echo "... Connection.i"
 	@echo "... Connection.s"
@@ -378,6 +375,9 @@ help:
 	@echo "... EventLoop.o"
 	@echo "... EventLoop.i"
 	@echo "... EventLoop.s"
+	@echo "... Filed.o"
+	@echo "... Filed.i"
+	@echo "... Filed.s"
 	@echo "... LuckyLog.o"
 	@echo "... LuckyLog.i"
 	@echo "... LuckyLog.s"

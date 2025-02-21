@@ -1,169 +1,167 @@
 #include "Epoller.h"
 
-const int kNew = -1;    // 某个channel还没添加至Poller
-const int kAdded = 1;   // 某个channel已经添加至Poller
-const int kDeleted = 2; // 某个channel已经从Poller删除
+const int kNew = -1;    // 某个filed还没添加至Poller
+const int kAdded = 1;   // 某个filed已经添加至Poller
+const int kDeleted = 2; // 某个filed已经从Poller删除
 
-Epoller::Epoller(EventLoop *loop) 
-    : ownerLoop_(loop)
-    , epollfd_(epoll_create1(EPOLL_CLOEXEC))
-    , events_(kEventListSize)
+Epoller::Epoller(EventLoop *loop)
+    : ownerLoop_(loop), epollfd_(epoll_create1(EPOLL_CLOEXEC)), events_(kEventListSize)
 {
     if (epollfd_ < 0)
     {
-        log<FATAL>("epoll_create error:%d \n", errno);
+        LOG_FATAL("epoll_create error:%d \n", errno);
     }
 }
 
-Epoller::~Epoller() 
+Epoller::~Epoller()
 {
     close(epollfd_);
 }
 
-TimeStamp Epoller::epoll(int timeout, ChannelList *activeChannels)
+TimeStamp Epoller::epoll(int timeout, FiledList *activeFileds)
 {
-    log<INFOM>("func=%s => fd total count:%lu\n", __FUNCTION__, channels_.size());
+    LOG_INFOM("func=%s => fd total count:%lu\n", __FUNCTION__, fileds_.size());
 
-    //epoll_wait把检测到的事件都存储在events_数组中
-    size_t events_num = epoll_wait(epollfd_, 
-                    &*events_.begin(), 
-                    static_cast<int>(events_.size()), 
-                    timeout);
+    // epoll_wait把检测到的事件都存储在events_数组中
+    size_t events_num = epoll_wait(epollfd_,
+                                   &*events_.begin(),
+                                   static_cast<int>(events_.size()),
+                                   timeout);
     int saveErrno = errno;
     TimeStamp now(TimeStamp::getNowTime());
-    //有事件
+    // 有事件
     if (events_num > 0)
     {
-        log<INFOM>("%d events happend\n", events_num);
+        LOG_INFOM("%d events happend\n", events_num);
 
-        fillActiveChannels(events_num, activeChannels);
-        //二倍扩容
+        fillActiveFileds(events_num, activeFileds);
+        // 二倍扩容
         if (events_num == events_.size() - 1)
             events_.resize(events_.size() * 2);
-    } 
-    //超时
+    }
+    // 超时
     else if (events_num == 0)
     {
         log<DEBUG>("%s timeout!\n", __FUNCTION__);
-    } 
-    //不是中断错误
+    }
+    // 不是中断错误
     else if (saveErrno != EINTR)
     {
         errno = saveErrno;
-        log<ERROR>("EPollPoller::poll() error!");
+        LOG_ERROR("EPollPoller::poll() error!");
     }
     return now;
 }
 
-//判断channel是否已经注册到epoll
-bool Epoller::hasChannel(Channel *channel) const
+// 判断filed是否已经注册到epoll
+bool Epoller::hasFiled(Filed *filed) const
 {
-    auto it = channels_.find(channel->getFd());
-    bool ret = ((it != channels_.end()) && (it->second == channel));
+    auto it = fileds_.find(filed->getFd());
+    bool ret = ((it != fileds_.end()) && (it->second == filed));
     return ret;
 }
 
 // //构造器 (可删除)
-// Epoller *Epoller::newEpoller(EventLoop *loop) 
+// Epoller *Epoller::newEpoller(EventLoop *loop)
 // {
 //     return new Epoller(loop);
 // }
 
-//根据channel在EPoller中的当前状态来更新channel的状态
-void Epoller::update(Channel *channel) 
+// 根据filed在EPoller中的当前状态来更新filed的状态
+void Epoller::update(Filed *filed)
 {
-    //channel的状态
-    const int index = channel->getIndex();
+    // filed的状态
+    const int index = filed->getIndex();
 
-    log<INFOM>("func=%s => fd=%d events=%d index=%d\n", __FUNCTION__, channel->getFd(), channel->getEvents(), index);
+    LOG_INFOM("func=%s => fd=%d events=%d index=%d\n", __FUNCTION__, filed->getFd(), filed->getEvents(), index);
 
-    int fd = channel->getFd();
-    //未添加状态和已删除状态都有可能会被再次添加到epoll中
+    int fd = filed->getFd();
+    // 未添加状态和已删除状态都有可能会被再次添加到epoll中
     if (index == kNew || index == kDeleted)
     {
         if (index == kNew)
         {
-            //类hash的vector
-            channels_[fd] = channel;
+            // 类hash的vector
+            fileds_[fd] = filed;
         }
-        else if(index == kDeleted)
+        else if (index == kDeleted)
         {
-            //这个处于kDeleted的channel还在channels_中，则继续执行
-            assert(channels_.find(fd) != channels_.end());
-            //channels_中记录的该fd对应的channel没有发生变化，则继续执行
-            assert(channels_[fd] == channel);
+            // 这个处于kDeleted的filed还在fileds_中，则继续执行
+            assert(fileds_.find(fd) != fileds_.end());
+            // fileds_中记录的该fd对应的filed没有发生变化，则继续执行
+            assert(fileds_[fd] == filed);
         }
-        //修改状态为已添加
-        channel->setIndex(kAdded);
-        updateHelper(EPOLL_CTL_ADD, channel);
+        // 修改状态为已添加
+        filed->setIndex(kAdded);
+        updateHelper(EPOLL_CTL_ADD, filed);
     }
-    //channel已经注册过
-    else 
+    // filed已经注册过
+    else
     {
-        //从epoll删除此channel
-        if (channel->isNoneEvent())
+        // 从epoll删除此filed
+        if (filed->isNoneEvent())
         {
-            updateHelper(EPOLL_CTL_DEL, channel);
-            channel->setIndex(kDeleted);
-        } 
-        //修改
-        else 
+            updateHelper(EPOLL_CTL_DEL, filed);
+            filed->setIndex(kDeleted);
+        }
+        // 修改
+        else
         {
-            updateHelper(EPOLL_CTL_MOD, channel);
+            updateHelper(EPOLL_CTL_MOD, filed);
         }
     }
 }
 
-// 当连接销毁时，从EPoller移除channel，这个移除并不是销毁channel，而只是把chanel的状态修改一下
-void Epoller::remove(Channel *channel) 
+// 当连接销毁时，从EPoller移除filed，这个移除并不是销毁filed，而只是把chanel的状态修改一下
+void Epoller::remove(Filed *filed)
 {
-    int fd = channel->getFd();
+    int fd = filed->getFd();
 
-    log<INFOM>("func=%s => fd=%d\n", __FUNCTION__, fd);
+    LOG_INFOM("func=%s => fd=%d\n", __FUNCTION__, fd);
 
-    channels_.erase(fd);
+    fileds_.erase(fd);
 
-    int index = channel->getIndex();
+    int index = filed->getIndex();
     if (index == kAdded)
     {
-        updateHelper(EPOLL_CTL_DEL, channel);    
+        updateHelper(EPOLL_CTL_DEL, filed);
     }
-    //重新设置为未注册
-    channel->setIndex(kNew);
+    // 重新设置为未注册
+    filed->setIndex(kNew);
 }
 
-void Epoller::fillActiveChannels(int events_num, ChannelList *activeChannels) const
+void Epoller::fillActiveFileds(int events_num, FiledList *activeFileds) const
 {
     for (int i = 0; i < events_num; ++i)
     {
-        //获得events_对应的channel，并把events_[i].events赋值给该channel中用于记录实际发生事件的属性revents_
-        Channel *channel = static_cast<Channel *>(events_[i].data.ptr);
-        channel->setRevents(events_[i].events);
-        activeChannels->push_back(channel);
+        // 获得events_对应的filed，并把events_[i].events赋值给该filed中用于记录实际发生事件的属性revents_
+        Filed *filed = static_cast<Filed *>(events_[i].data.ptr);
+        filed->setRevents(events_[i].events);
+        activeFileds->push_back(filed);
     }
 }
 
-void Epoller::updateHelper(int operation, Channel *channel)
+void Epoller::updateHelper(int operation, Filed *filed)
 {
     epoll_event event;
     memset(&event, 0, sizeof(event));
 
-    event.events = channel->getEvents();
-    event.data.fd = channel->getFd();
-    //关联至fillActiveChannels()中的
-    //Channel *channel = static_cast<Channel *>(events_[i].data.ptr);
-    event.data.ptr = channel;
+    event.events = filed->getEvents();
+    event.data.fd = filed->getFd();
+    // 关联至fillActiveFileds()中的
+    // Filed *filed = static_cast<Filed *>(events_[i].data.ptr);
+    event.data.ptr = filed;
 
-    //int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
-    if (epoll_ctl(epollfd_, operation, channel->getFd(), &event) < 0)
+    // int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
+    if (epoll_ctl(epollfd_, operation, filed->getFd(), &event) < 0)
     {
         if (operation == EPOLL_CTL_DEL)
         {
-            log<ERROR>("epoll_ctl del error:%d\n", errno);
-        } 
-        else 
+            LOG_ERROR("epoll_ctl del error:%d\n", errno);
+        }
+        else
         {
-            log<FATAL>("epoll_ctl add/mod error:%d\n", errno);
+            LOG_FATAL("epoll_ctl add/mod error:%d\n", errno);
         }
     }
 }

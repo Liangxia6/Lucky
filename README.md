@@ -6,9 +6,9 @@
 
 本项目基于主从Reactor模型的多线程网络库，使用C++11编写。
 
-EventLoop1(即主Reactor)负责持续监听客户端的连接，将连接封装为Channel，使用Epoller(封装了Linux::epoll，实现非阻塞IO)对客户端连接进行管理，将其分发给子EventLoop，同样交给Epoller进行事件监听。
+EventLoop1(即主Reactor)负责持续监听客户端的连接，将连接封装为Filed，使用Epoller(封装了Linux::epoll，实现非阻塞IO)对客户端连接进行管理，将其分发给子EventLoop，同样交给Epoller进行事件监听。
 
-在Lucky中，每一个线程都可以看作是一个Reactor，主线程只负责监听接收新连接，并将接收的连接对应的Channel分发到子Reactor中，子线程就负责处理主线程分发给自己的fd上的事件，比如Channel上发生的可读、可写、错误等事件，从Channel上读取数据后，要进行的业务逻辑也是由子线程负责的。
+在Lucky中，每一个线程都可以看作是一个Reactor，主线程只负责监听接收新连接，并将接收的连接对应的Filed分发到子Reactor中，子线程就负责处理主线程分发给自己的fd上的事件，比如Filed上发生的可读、可写、错误等事件，从Filed上读取数据后，要进行的业务逻辑也是由子线程负责的。
 
 ![1704386325883](images/README/1704386325883.png)
 
@@ -29,9 +29,9 @@ EventLoop1(即主Reactor)负责持续监听客户端的连接，将连接封装�
 
 ### 核心类
 
-#### 1.Channel
+#### 1.Filed
 
-Channel类封装了一个 [fd] 和这个 [fd感兴趣事件] 以及事件监听器监听到 [该fd实际发生的事件]。同时Channel类还提供了**设置**该fd的感兴趣事件，以及将该fd及其感兴趣事件**注册**到事件监听器或从事件监听器上**移除**，以及**保存**了该fd的每种事件对应的处理函数。
+Filed类封装了一个 [fd] 和这个 [fd感兴趣事件] 以及事件监听器监听到 [该fd实际发生的事件]。同时Filed类还提供了**设置**该fd的感兴趣事件，以及将该fd及其感兴趣事件**注册**到事件监听器或从事件监听器上**移除**，以及**保存**了该fd的每种事件对应的处理函数。
 
 #### 2.Epoller
 
@@ -39,11 +39,11 @@ Epoller封装了Linux实现的epoll，**负责监听文件描述符事件是否�
 
 #### 3.EventLoop
 
-EventLoop就是负责实现“循环”**，负责驱动**“循环”的重要模块！！Channel和Poller其实相当于EventLoop的手下，EventLoop整合封装了二者并向上提供了更方便的接口来使用。
+EventLoop就是负责实现“循环”**，负责驱动**“循环”的重要模块！！Filed和Poller其实相当于EventLoop的手下，EventLoop整合封装了二者并向上提供了更方便的接口来使用。
 
 #### 4.Acceptor
 
-Accetpor封装了服务器监听套接字fd以及相关处理方法。TcpServer发现Acceptor有一个新连接，则将此channel分发给一个subLoop。
+Accetpor封装了服务器监听套接字fd以及相关处理方法。TcpServer发现Acceptor有一个新连接，则将此filed分发给一个subLoop。
 
 #### 5.Server
 
