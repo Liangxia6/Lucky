@@ -165,8 +165,8 @@ Filed.h
 /home/hong/Desktop/Lucky/Filed.h
 Epoller.h
 /home/hong/Desktop/Lucky/Epoller.h
-getThreadID.h
-/home/hong/Desktop/Lucky/getThreadID.h
+ThreadID.h
+/home/hong/Desktop/Lucky/ThreadID.h
 
 /home/hong/Desktop/Lucky/Filed.cpp
 Filed.h
@@ -243,8 +243,8 @@ Acceptor.h
 /home/hong/Desktop/Lucky/Acceptor.h
 Address.h
 /home/hong/Desktop/Lucky/Address.h
-ThreadPool.h
-/home/hong/Desktop/Lucky/ThreadPool.h
+ManagerPool.h
+/home/hong/Desktop/Lucky/ManagerPool.h
 Connection.h
 /home/hong/Desktop/Lucky/Connection.h
 Manager.h
@@ -293,14 +293,22 @@ memory
 -
 unistd.h
 -
-getThreadID.h
-/home/hong/Desktop/Lucky/getThreadID.h
+ThreadID.h
+/home/hong/Desktop/Lucky/ThreadID.h
 
-/home/hong/Desktop/Lucky/ThreadPool.cpp
-ThreadPool.h
-/home/hong/Desktop/Lucky/ThreadPool.h
+/home/hong/Desktop/Lucky/ThreadID.cpp
 
-/home/hong/Desktop/Lucky/ThreadPool.h
+/home/hong/Desktop/Lucky/ThreadID.h
+unistd.h
+-
+sys/syscall.h
+-
+
+/home/hong/Desktop/Lucky/ManagerPool.cpp
+ManagerPool.h
+/home/hong/Desktop/Lucky/ManagerPool.h
+
+/home/hong/Desktop/Lucky/ManagerPool.h
 functional
 -
 string
@@ -326,15 +334,5 @@ string
 time.h
 -
 cstdio
--
-
-/home/hong/Desktop/Lucky/getThreadID.cpp
-getThreadID.h
-/home/hong/Desktop/Lucky/getThreadID.h
-
-/home/hong/Desktop/Lucky/getThreadID.h
-unistd.h
--
-sys/syscall.h
 -
 

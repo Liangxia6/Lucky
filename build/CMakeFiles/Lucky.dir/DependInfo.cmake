@@ -16,9 +16,9 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/hong/Desktop/Lucky/Server.cpp" "/home/hong/Desktop/Lucky/build/CMakeFiles/Lucky.dir/Server.o"
   "/home/hong/Desktop/Lucky/Socket.cpp" "/home/hong/Desktop/Lucky/build/CMakeFiles/Lucky.dir/Socket.o"
   "/home/hong/Desktop/Lucky/Thread.cpp" "/home/hong/Desktop/Lucky/build/CMakeFiles/Lucky.dir/Thread.o"
-  "/home/hong/Desktop/Lucky/ThreadPool.cpp" "/home/hong/Desktop/Lucky/build/CMakeFiles/Lucky.dir/ThreadPool.o"
+  "/home/hong/Desktop/Lucky/ThreadID.cpp" "/home/hong/Desktop/Lucky/build/CMakeFiles/Lucky.dir/ThreadID.o"
+  "/home/hong/Desktop/Lucky/ManagerPool.cpp" "/home/hong/Desktop/Lucky/build/CMakeFiles/Lucky.dir/ManagerPool.o"
   "/home/hong/Desktop/Lucky/TimeStamp.cpp" "/home/hong/Desktop/Lucky/build/CMakeFiles/Lucky.dir/TimeStamp.o"
-  "/home/hong/Desktop/Lucky/getThreadID.cpp" "/home/hong/Desktop/Lucky/build/CMakeFiles/Lucky.dir/getThreadID.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

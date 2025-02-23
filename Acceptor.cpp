@@ -65,7 +65,7 @@ void Acceptor::handleRead()
         }
         else
         {
-            log<DEBUG>("no newConnectionCallback()");
+            LOG_DEBUG("no newConnectionCallback()");
             close(connfd);
         }
     }

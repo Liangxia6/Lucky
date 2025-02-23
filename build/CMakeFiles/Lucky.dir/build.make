@@ -57,28 +57,28 @@ include CMakeFiles/Lucky.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Lucky.dir/flags.make
 
-CMakeFiles/Lucky.dir/ThreadPool.o: CMakeFiles/Lucky.dir/flags.make
-CMakeFiles/Lucky.dir/ThreadPool.o: ../ThreadPool.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Lucky.dir/ThreadPool.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/ThreadPool.o -c /home/hong/Desktop/Lucky/ThreadPool.cpp
+CMakeFiles/Lucky.dir/ManagerPool.o: CMakeFiles/Lucky.dir/flags.make
+CMakeFiles/Lucky.dir/ManagerPool.o: ../ManagerPool.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Lucky.dir/ManagerPool.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/ManagerPool.o -c /home/hong/Desktop/Lucky/ManagerPool.cpp
 
-CMakeFiles/Lucky.dir/ThreadPool.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/ThreadPool.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/ThreadPool.cpp > CMakeFiles/Lucky.dir/ThreadPool.i
+CMakeFiles/Lucky.dir/ManagerPool.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/ManagerPool.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/ManagerPool.cpp > CMakeFiles/Lucky.dir/ManagerPool.i
 
-CMakeFiles/Lucky.dir/ThreadPool.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/ThreadPool.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/ThreadPool.cpp -o CMakeFiles/Lucky.dir/ThreadPool.s
+CMakeFiles/Lucky.dir/ManagerPool.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/ManagerPool.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/ManagerPool.cpp -o CMakeFiles/Lucky.dir/ManagerPool.s
 
-CMakeFiles/Lucky.dir/ThreadPool.o.requires:
+CMakeFiles/Lucky.dir/ManagerPool.o.requires:
 
-.PHONY : CMakeFiles/Lucky.dir/ThreadPool.o.requires
+.PHONY : CMakeFiles/Lucky.dir/ManagerPool.o.requires
 
-CMakeFiles/Lucky.dir/ThreadPool.o.provides: CMakeFiles/Lucky.dir/ThreadPool.o.requires
-	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/ThreadPool.o.provides.build
-.PHONY : CMakeFiles/Lucky.dir/ThreadPool.o.provides
+CMakeFiles/Lucky.dir/ManagerPool.o.provides: CMakeFiles/Lucky.dir/ManagerPool.o.requires
+	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/ManagerPool.o.provides.build
+.PHONY : CMakeFiles/Lucky.dir/ManagerPool.o.provides
 
-CMakeFiles/Lucky.dir/ThreadPool.o.provides.build: CMakeFiles/Lucky.dir/ThreadPool.o
+CMakeFiles/Lucky.dir/ManagerPool.o.provides.build: CMakeFiles/Lucky.dir/ManagerPool.o
 
 
 CMakeFiles/Lucky.dir/Epoller.o: CMakeFiles/Lucky.dir/flags.make
@@ -153,28 +153,28 @@ CMakeFiles/Lucky.dir/Server.o.provides: CMakeFiles/Lucky.dir/Server.o.requires
 CMakeFiles/Lucky.dir/Server.o.provides.build: CMakeFiles/Lucky.dir/Server.o
 
 
-CMakeFiles/Lucky.dir/getThreadID.o: CMakeFiles/Lucky.dir/flags.make
-CMakeFiles/Lucky.dir/getThreadID.o: ../getThreadID.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Lucky.dir/getThreadID.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/getThreadID.o -c /home/hong/Desktop/Lucky/getThreadID.cpp
+CMakeFiles/Lucky.dir/ThreadID.o: CMakeFiles/Lucky.dir/flags.make
+CMakeFiles/Lucky.dir/ThreadID.o: ../ThreadID.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hong/Desktop/Lucky/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Lucky.dir/ThreadID.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Lucky.dir/ThreadID.o -c /home/hong/Desktop/Lucky/ThreadID.cpp
 
-CMakeFiles/Lucky.dir/getThreadID.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/getThreadID.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/getThreadID.cpp > CMakeFiles/Lucky.dir/getThreadID.i
+CMakeFiles/Lucky.dir/ThreadID.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lucky.dir/ThreadID.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hong/Desktop/Lucky/ThreadID.cpp > CMakeFiles/Lucky.dir/ThreadID.i
 
-CMakeFiles/Lucky.dir/getThreadID.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/getThreadID.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/getThreadID.cpp -o CMakeFiles/Lucky.dir/getThreadID.s
+CMakeFiles/Lucky.dir/ThreadID.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lucky.dir/ThreadID.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hong/Desktop/Lucky/ThreadID.cpp -o CMakeFiles/Lucky.dir/ThreadID.s
 
-CMakeFiles/Lucky.dir/getThreadID.o.requires:
+CMakeFiles/Lucky.dir/ThreadID.o.requires:
 
-.PHONY : CMakeFiles/Lucky.dir/getThreadID.o.requires
+.PHONY : CMakeFiles/Lucky.dir/ThreadID.o.requires
 
-CMakeFiles/Lucky.dir/getThreadID.o.provides: CMakeFiles/Lucky.dir/getThreadID.o.requires
-	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/getThreadID.o.provides.build
-.PHONY : CMakeFiles/Lucky.dir/getThreadID.o.provides
+CMakeFiles/Lucky.dir/ThreadID.o.provides: CMakeFiles/Lucky.dir/ThreadID.o.requires
+	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/ThreadID.o.provides.build
+.PHONY : CMakeFiles/Lucky.dir/ThreadID.o.provides
 
-CMakeFiles/Lucky.dir/getThreadID.o.provides.build: CMakeFiles/Lucky.dir/getThreadID.o
+CMakeFiles/Lucky.dir/ThreadID.o.provides.build: CMakeFiles/Lucky.dir/ThreadID.o
 
 
 CMakeFiles/Lucky.dir/Filed.o: CMakeFiles/Lucky.dir/flags.make
@@ -419,11 +419,11 @@ CMakeFiles/Lucky.dir/EventLoop.o.provides.build: CMakeFiles/Lucky.dir/EventLoop.
 
 # Object files for target Lucky
 Lucky_OBJECTS = \
-"CMakeFiles/Lucky.dir/ThreadPool.o" \
+"CMakeFiles/Lucky.dir/ManagerPool.o" \
 "CMakeFiles/Lucky.dir/Epoller.o" \
 "CMakeFiles/Lucky.dir/TimeStamp.o" \
 "CMakeFiles/Lucky.dir/Server.o" \
-"CMakeFiles/Lucky.dir/getThreadID.o" \
+"CMakeFiles/Lucky.dir/ThreadID.o" \
 "CMakeFiles/Lucky.dir/Filed.o" \
 "CMakeFiles/Lucky.dir/Socket.o" \
 "CMakeFiles/Lucky.dir/Address.o" \
@@ -438,11 +438,11 @@ Lucky_OBJECTS = \
 # External object files for target Lucky
 Lucky_EXTERNAL_OBJECTS =
 
-../lib/libLucky.so: CMakeFiles/Lucky.dir/ThreadPool.o
+../lib/libLucky.so: CMakeFiles/Lucky.dir/ManagerPool.o
 ../lib/libLucky.so: CMakeFiles/Lucky.dir/Epoller.o
 ../lib/libLucky.so: CMakeFiles/Lucky.dir/TimeStamp.o
 ../lib/libLucky.so: CMakeFiles/Lucky.dir/Server.o
-../lib/libLucky.so: CMakeFiles/Lucky.dir/getThreadID.o
+../lib/libLucky.so: CMakeFiles/Lucky.dir/ThreadID.o
 ../lib/libLucky.so: CMakeFiles/Lucky.dir/Filed.o
 ../lib/libLucky.so: CMakeFiles/Lucky.dir/Socket.o
 ../lib/libLucky.so: CMakeFiles/Lucky.dir/Address.o
@@ -463,11 +463,11 @@ CMakeFiles/Lucky.dir/build: ../lib/libLucky.so
 
 .PHONY : CMakeFiles/Lucky.dir/build
 
-CMakeFiles/Lucky.dir/requires: CMakeFiles/Lucky.dir/ThreadPool.o.requires
+CMakeFiles/Lucky.dir/requires: CMakeFiles/Lucky.dir/ManagerPool.o.requires
 CMakeFiles/Lucky.dir/requires: CMakeFiles/Lucky.dir/Epoller.o.requires
 CMakeFiles/Lucky.dir/requires: CMakeFiles/Lucky.dir/TimeStamp.o.requires
 CMakeFiles/Lucky.dir/requires: CMakeFiles/Lucky.dir/Server.o.requires
-CMakeFiles/Lucky.dir/requires: CMakeFiles/Lucky.dir/getThreadID.o.requires
+CMakeFiles/Lucky.dir/requires: CMakeFiles/Lucky.dir/ThreadID.o.requires
 CMakeFiles/Lucky.dir/requires: CMakeFiles/Lucky.dir/Filed.o.requires
 CMakeFiles/Lucky.dir/requires: CMakeFiles/Lucky.dir/Socket.o.requires
 CMakeFiles/Lucky.dir/requires: CMakeFiles/Lucky.dir/Address.o.requires

@@ -17,7 +17,14 @@ class Filed;
 class EventLoop;
 
 /**
+ *负责监听文件描述符事件是否触发以及返回发生事件的文件描述符以及具体事件
+ * 每个EventLoop包含一个Epoller
+ * 通过哈希表fileds_可以根据fd找到封装这个fd的Filed。
+ * 将事件监听器监听到该fd发生的事件写进这个Filed中的revents成员变量中
  *
+ * 然后把这个Filed装进activeFileds中（它是一个vector<Filed*>）。
+ * 当外界调用完poll之后就能拿到事件监听器的监听结果（activeFileds_）
+ * activeFileds就是事件监听器监听到的发生事件的fd，以及每个fd都发生了什么事件。
  */
 class Epoller
 {
@@ -35,7 +42,7 @@ public:
     // //构造器
     // static Epoller *newEpoller(EventLoop *);
 
-    // 调用私有的updateHel中的perepoll_ctl()
+    // 调用私有的updateHel中的perepoll_ctl(),同步Filed类的状态
     void update(Filed *);
     // 连接销毁时,移除epoll中的filed
     void remove(Filed *);

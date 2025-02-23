@@ -42,7 +42,7 @@ TimeStamp Epoller::epoll(int timeout, FiledList *activeFileds)
     // 超时
     else if (events_num == 0)
     {
-        log<DEBUG>("%s timeout!\n", __FUNCTION__);
+        LOG_ERROR("%s timeout!\n", __FUNCTION__);
     }
     // 不是中断错误
     else if (saveErrno != EINTR)
@@ -112,7 +112,7 @@ void Epoller::update(Filed *filed)
     }
 }
 
-// 当连接销毁时，从EPoller移除filed，这个移除并不是销毁filed，而只是把chanel的状态修改一下
+// 当连接销毁时，从EPoller移除filed，这个移除并不是销毁filed，而只是把filed的状态修改一下
 void Epoller::remove(Filed *filed)
 {
     int fd = filed->getFd();
@@ -145,6 +145,26 @@ void Epoller::updateHelper(int operation, Filed *filed)
 {
     epoll_event event;
     memset(&event, 0, sizeof(event));
+
+    // struct epoll_event {
+    //     __uint32_t events;  // 事件类型
+    //     epoll_data_t data;  // 用户数据
+    // };
+    // EPOLLIN表示对应的文件描述符可以读取。
+    // EPOLLOUT表示对应的文件描述符可以写入。
+    // EPOLLERR表示文件描述符发生错误。
+    // EPOLLHUP表示文件描述符被挂起。
+    // EPOLLRDHUP表示对等方关闭了连接（TCP 半关闭）。
+    // EPOLLPRI表示文件描述符有紧急数据可读。
+    // EPOLLET表示启用边缘触发（edge-triggered）模式。
+    
+    // typedef union epoll_data {
+    //     void *ptr;      // 指向任意类型的数据
+    //     int fd;         // 文件描述符
+    //     uint32_t u32;   // 32 位无符号整数
+    //     uint64_t u64;   // 64 位无符号整数
+    // } epoll_data_t;
+
 
     event.events = filed->getEvents();
     event.data.fd = filed->getFd();

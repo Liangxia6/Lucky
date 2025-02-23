@@ -10,8 +10,8 @@ CMakeFiles/Lucky.dir/Acceptor.o
  /home/hong/Desktop/Lucky/Filed.h
  /home/hong/Desktop/Lucky/LuckyLog.h
  /home/hong/Desktop/Lucky/Socket.h
+ /home/hong/Desktop/Lucky/ThreadID.h
  /home/hong/Desktop/Lucky/TimeStamp.h
- /home/hong/Desktop/Lucky/getThreadID.h
 CMakeFiles/Lucky.dir/Address.o
  /home/hong/Desktop/Lucky/Address.cpp
  /home/hong/Desktop/Lucky/Address.h
@@ -28,32 +28,32 @@ CMakeFiles/Lucky.dir/Connection.o
  /home/hong/Desktop/Lucky/Filed.h
  /home/hong/Desktop/Lucky/LuckyLog.h
  /home/hong/Desktop/Lucky/Socket.h
+ /home/hong/Desktop/Lucky/ThreadID.h
  /home/hong/Desktop/Lucky/TimeStamp.h
- /home/hong/Desktop/Lucky/getThreadID.h
 CMakeFiles/Lucky.dir/Epoller.o
  /home/hong/Desktop/Lucky/Epoller.cpp
  /home/hong/Desktop/Lucky/Epoller.h
  /home/hong/Desktop/Lucky/EventLoop.h
  /home/hong/Desktop/Lucky/Filed.h
  /home/hong/Desktop/Lucky/LuckyLog.h
+ /home/hong/Desktop/Lucky/ThreadID.h
  /home/hong/Desktop/Lucky/TimeStamp.h
- /home/hong/Desktop/Lucky/getThreadID.h
 CMakeFiles/Lucky.dir/EventLoop.o
  /home/hong/Desktop/Lucky/Epoller.h
  /home/hong/Desktop/Lucky/EventLoop.cpp
  /home/hong/Desktop/Lucky/EventLoop.h
  /home/hong/Desktop/Lucky/Filed.h
  /home/hong/Desktop/Lucky/LuckyLog.h
+ /home/hong/Desktop/Lucky/ThreadID.h
  /home/hong/Desktop/Lucky/TimeStamp.h
- /home/hong/Desktop/Lucky/getThreadID.h
 CMakeFiles/Lucky.dir/Filed.o
  /home/hong/Desktop/Lucky/Epoller.h
  /home/hong/Desktop/Lucky/EventLoop.h
  /home/hong/Desktop/Lucky/Filed.cpp
  /home/hong/Desktop/Lucky/Filed.h
  /home/hong/Desktop/Lucky/LuckyLog.h
+ /home/hong/Desktop/Lucky/ThreadID.h
  /home/hong/Desktop/Lucky/TimeStamp.h
- /home/hong/Desktop/Lucky/getThreadID.h
 CMakeFiles/Lucky.dir/LuckyLog.o
  /home/hong/Desktop/Lucky/LuckyLog.cpp
  /home/hong/Desktop/Lucky/LuckyLog.h
@@ -66,8 +66,8 @@ CMakeFiles/Lucky.dir/Manager.o
  /home/hong/Desktop/Lucky/Manager.cpp
  /home/hong/Desktop/Lucky/Manager.h
  /home/hong/Desktop/Lucky/Thread.h
+ /home/hong/Desktop/Lucky/ThreadID.h
  /home/hong/Desktop/Lucky/TimeStamp.h
- /home/hong/Desktop/Lucky/getThreadID.h
 CMakeFiles/Lucky.dir/Server.o
  /home/hong/Desktop/Lucky/Acceptor.h
  /home/hong/Desktop/Lucky/Address.h
@@ -82,9 +82,9 @@ CMakeFiles/Lucky.dir/Server.o
  /home/hong/Desktop/Lucky/Server.h
  /home/hong/Desktop/Lucky/Socket.h
  /home/hong/Desktop/Lucky/Thread.h
- /home/hong/Desktop/Lucky/ThreadPool.h
+ /home/hong/Desktop/Lucky/ThreadID.h
+ /home/hong/Desktop/Lucky/ManagerPool.h
  /home/hong/Desktop/Lucky/TimeStamp.h
- /home/hong/Desktop/Lucky/getThreadID.h
 CMakeFiles/Lucky.dir/Socket.o
  /home/hong/Desktop/Lucky/Address.h
  /home/hong/Desktop/Lucky/LuckyLog.h
@@ -94,21 +94,20 @@ CMakeFiles/Lucky.dir/Socket.o
 CMakeFiles/Lucky.dir/Thread.o
  /home/hong/Desktop/Lucky/Thread.cpp
  /home/hong/Desktop/Lucky/Thread.h
- /home/hong/Desktop/Lucky/getThreadID.h
-CMakeFiles/Lucky.dir/ThreadPool.o
+ /home/hong/Desktop/Lucky/ThreadID.h
+CMakeFiles/Lucky.dir/ThreadID.o
+ /home/hong/Desktop/Lucky/ThreadID.cpp
+CMakeFiles/Lucky.dir/ManagerPool.o
  /home/hong/Desktop/Lucky/Epoller.h
  /home/hong/Desktop/Lucky/EventLoop.h
  /home/hong/Desktop/Lucky/Filed.h
  /home/hong/Desktop/Lucky/LuckyLog.h
  /home/hong/Desktop/Lucky/Manager.h
  /home/hong/Desktop/Lucky/Thread.h
- /home/hong/Desktop/Lucky/ThreadPool.cpp
- /home/hong/Desktop/Lucky/ThreadPool.h
+ /home/hong/Desktop/Lucky/ThreadID.h
+ /home/hong/Desktop/Lucky/ManagerPool.cpp
+ /home/hong/Desktop/Lucky/ManagerPool.h
  /home/hong/Desktop/Lucky/TimeStamp.h
- /home/hong/Desktop/Lucky/getThreadID.h
 CMakeFiles/Lucky.dir/TimeStamp.o
  /home/hong/Desktop/Lucky/TimeStamp.cpp
  /home/hong/Desktop/Lucky/TimeStamp.h
-CMakeFiles/Lucky.dir/getThreadID.o
- /home/hong/Desktop/Lucky/getThreadID.cpp
- /home/hong/Desktop/Lucky/getThreadID.h

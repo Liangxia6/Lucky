@@ -15,9 +15,9 @@ Server::Server(EventLoop *loop,
                const std::string &nameArg,
                Option option)
     : loop_(CheckLoopNotNull(loop)), ipPort_(listenAddr.toIpPort()), name_(nameArg)
-      // Aceptor和ThreadPool在这里创建
+      // Aceptor和ManagerPool在这里创建
       ,
-      acceptor_(new Acceptor(loop, listenAddr, option == kReusePort)), threadPool_(new ThreadPool(loop, name_)), connectionCallback_(), messageCallback_(), nextConnId_(1), started_(0)
+      acceptor_(new Acceptor(loop, listenAddr, option == kReusePort)), ManagerPool_(new ManagerPool(loop, name_)), connectionCallback_(), messageCallback_(), nextConnId_(1), started_(0)
 {
     // 当有新用户连接时，Acceptor类中绑定的acceptFiled_会有读事件发生，执行handleRead()调用Server::newConnection回调
     acceptor_->setNewConnectionCallback(
@@ -40,7 +40,7 @@ Server::~Server()
 // 设置底层subloop的个数
 void Server::setThreadNum(int numThreads)
 {
-    threadPool_->setThread_num(numThreads);
+    ManagerPool_->setThread_num(numThreads);
 }
 
 // 开启服务器监听
@@ -49,7 +49,7 @@ void Server::start()
     // 防止一个Server对象被start多次
     if (started_++ == 0)
     {
-        threadPool_->start(threadInitCallback_);
+        ManagerPool_->start(threadInitCallback_);
         // 开启监听
         loop_->runinLoop(std::bind(&Acceptor::listen, acceptor_.get()));
     }
@@ -60,7 +60,7 @@ void Server::start()
 void Server::newConnection(int sockfd, const Address &peerAddr)
 {
     // 轮询算法,选择一个subLoop,来管理connfd对应的filed
-    EventLoop *ioLoop = threadPool_->getNextLoop();
+    EventLoop *ioLoop = ManagerPool_->getNextLoop();
     char buff[64] = {0};
     snprintf(buff, sizeof(buff), "-%s#%d", ipPort_.c_str(), nextConnId_);
     // 这里没有设置为原子类是因为其只在mainloop中执行,不涉及线程安全问题

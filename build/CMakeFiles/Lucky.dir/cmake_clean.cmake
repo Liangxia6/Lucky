@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Lucky.dir/ThreadPool.o"
+  "CMakeFiles/Lucky.dir/ManagerPool.o"
   "CMakeFiles/Lucky.dir/Epoller.o"
   "CMakeFiles/Lucky.dir/TimeStamp.o"
   "CMakeFiles/Lucky.dir/Server.o"
-  "CMakeFiles/Lucky.dir/getThreadID.o"
+  "CMakeFiles/Lucky.dir/ThreadID.o"
   "CMakeFiles/Lucky.dir/Filed.o"
   "CMakeFiles/Lucky.dir/Socket.o"
   "CMakeFiles/Lucky.dir/Address.o"

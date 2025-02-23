@@ -1,26 +1,28 @@
 #include "EventLoop.h"
 
 // 独立于线程的指针,确保一个线程只有一个EventLoop
-__thread EventLoop *t_LoopinThread = nullptr;
+thread_local EventLoop *t_LoopinThread = nullptr;
 
 // epoll的超时时间
 const int kEpollTime = 10000;
 
-// 创建wakeupfd
+// 创建wakeupfd,唤醒子Reactor处理新连接的Filed
 int createEventfd()
 {
+    // int eventfd(unsigned int initval, int flags);
+    // 可以用来在线程或进程之间传递事件通知,用于事件通知或者用于信号传递
     int efd = eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
     if (efd < 0)
     {
-        LOG_FATAL("eventfd error:%d\n", errno);
+        LOG_FATAL("eventfd creat error:%d\n", errno);
     }
     return efd;
 }
 
 EventLoop::EventLoop()
-    : looping_(false), quit_(false), threadId_(getThreadID::tid()), wakeupFd_(createEventfd()), epoller_(new Epoller(this)), wakeupFiled_(new Filed(this, wakeupFd_)), isCallPendFunc_(false)
+    : looping_(false), quit_(false), threadId_(ThreadID::tid()), wakeupFd_(createEventfd()), epoller_(new Epoller(this)), wakeupFiled_(new Filed(this, wakeupFd_)), isCallPendFunc_(false)
 {
-    log<DEBUG>("EventLoop created %p in thread %d\n", this, threadId_);
+    LOG_INFOM("EventLoop created %p in thread %d\n", this, threadId_);
     // 确保此线程上只有一个EventLoop
     if (t_LoopinThread)
     {
@@ -32,6 +34,7 @@ EventLoop::EventLoop()
     }
     // 设置waupfd的回调函数并让epoll监听
     wakeupFiled_->setReadCallback(std::bind(&EventLoop::handelwakeupRead, this));
+    // 每一个EventLoop都将监听wakeupFiled的EPOLLIN读事件
     wakeupFiled_->enableReading();
 }
 
@@ -61,6 +64,7 @@ void EventLoop::loop()
         // 逐一处理上层回调
         for (Filed *filed : activeFileds_)
         {
+            // Epoller监听哪些Filed发生了事件,上报给EventLoop,通知相应的Filed处理事件
             filed->handleEvent(epollReturnTime_);
         }
         /**
@@ -165,7 +169,7 @@ void EventLoop::doPendFunc()
 
 bool EventLoop::isLoopThread() const
 {
-    return threadId_ == getThreadID::tid();
+    return threadId_ == ThreadID::tid();
 }
 
 bool EventLoop::hasFiled(Filed *filed)

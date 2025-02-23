@@ -14,14 +14,22 @@
 #include "TimeStamp.h"
 #include "Filed.h"
 #include "Epoller.h"
-#include "getThreadID.h"
+#include "ThreadID.h"
 
 class Filed;
 class Epoller;
 
 /**
+ * EventLoop有持续监听、持续获取监听结果、持续处理监听结果对应的事件的能力
+ * 循环的调用Poller:poll方法获取实际发生事件的Filed集合，
+ * 然后调用这些Filed里面保管的不同类型事件的处理函数（调用Filed::HandlerEvent方法）
  *
+ * Filed和Poller其实相当于EventLoop的手下，
+ * EventLoop整合封装了二者并向上提供了更方便的接口来使用。
+ *
+ * 每一个EventLoop都绑定了一个线程（一对一绑定）
  */
+
 class EventLoop
 {
 public:
@@ -38,7 +46,7 @@ public:
     // 让回调函数加入pendingFunc中等待,在下一个EventLoop中再执行
     void queueinLoop(Callback);
 
-    // 唤醒epoller,避免阻塞再epoll_wait (向wakeuoFd写入读事件)
+    // 主R唤醒子R的epoller,避免阻塞在epoll_wait (向wakeuoFd写入读事件)
     void wakeup();
     // 判断EventLoop初始化时绑定的线程id是否和当前正在运行的线程id是否一致
     bool isLoopThread() const;
@@ -54,7 +62,7 @@ public:
     void remove(Filed *);
 
 private:
-    // wakeupFiled的读事件回调
+    // wakeup的读事件回调
     void handelwakeupRead();
     void doPendFunc();
 
@@ -66,8 +74,8 @@ private:
     TimeStamp epollReturnTime_;
 
     std::unique_ptr<Epoller> epoller_;
-    int wakeupFd_; // 唤醒epoll的事件
-    std::unique_ptr<Filed> wakeupFiled_;
+    int wakeupFd_;                       // 唤醒epoll的事件
+    std::unique_ptr<Filed> wakeupFiled_; // 连接主Reactor与子Reactor,主通知子有新的fd
 
     using FiledList = std::vector<Filed *>;
     FiledList activeFileds_;

@@ -304,19 +304,34 @@ Thread.s:
 .PHONY : Thread.s
 
 # target to build an object file
-ThreadPool.o:
-	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/ThreadPool.o
-.PHONY : ThreadPool.o
+ThreadID.o:
+	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/ThreadID.o
+.PHONY : ThreadID.o
 
 # target to preprocess a source file
-ThreadPool.i:
-	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/ThreadPool.i
-.PHONY : ThreadPool.i
+ThreadID.i:
+	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/ThreadID.i
+.PHONY : ThreadID.i
 
 # target to generate assembly for a file
-ThreadPool.s:
-	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/ThreadPool.s
-.PHONY : ThreadPool.s
+ThreadID.s:
+	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/ThreadID.s
+.PHONY : ThreadID.s
+
+# target to build an object file
+ManagerPool.o:
+	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/ManagerPool.o
+.PHONY : ManagerPool.o
+
+# target to preprocess a source file
+ManagerPool.i:
+	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/ManagerPool.i
+.PHONY : ManagerPool.i
+
+# target to generate assembly for a file
+ManagerPool.s:
+	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/ManagerPool.s
+.PHONY : ManagerPool.s
 
 # target to build an object file
 TimeStamp.o:
@@ -332,21 +347,6 @@ TimeStamp.i:
 TimeStamp.s:
 	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/TimeStamp.s
 .PHONY : TimeStamp.s
-
-# target to build an object file
-getThreadID.o:
-	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/getThreadID.o
-.PHONY : getThreadID.o
-
-# target to preprocess a source file
-getThreadID.i:
-	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/getThreadID.i
-.PHONY : getThreadID.i
-
-# target to generate assembly for a file
-getThreadID.s:
-	$(MAKE) -f CMakeFiles/Lucky.dir/build.make CMakeFiles/Lucky.dir/getThreadID.s
-.PHONY : getThreadID.s
 
 # Help Target
 help:
@@ -393,15 +393,15 @@ help:
 	@echo "... Thread.o"
 	@echo "... Thread.i"
 	@echo "... Thread.s"
-	@echo "... ThreadPool.o"
-	@echo "... ThreadPool.i"
-	@echo "... ThreadPool.s"
+	@echo "... ThreadID.o"
+	@echo "... ThreadID.i"
+	@echo "... ThreadID.s"
+	@echo "... ManagerPool.o"
+	@echo "... ManagerPool.i"
+	@echo "... ManagerPool.s"
 	@echo "... TimeStamp.o"
 	@echo "... TimeStamp.i"
 	@echo "... TimeStamp.s"
-	@echo "... getThreadID.o"
-	@echo "... getThreadID.i"
-	@echo "... getThreadID.s"
 .PHONY : help
 
 

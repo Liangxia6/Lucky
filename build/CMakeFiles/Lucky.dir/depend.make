@@ -9,8 +9,8 @@ CMakeFiles/Lucky.dir/Acceptor.o: ../EventLoop.h
 CMakeFiles/Lucky.dir/Acceptor.o: ../Filed.h
 CMakeFiles/Lucky.dir/Acceptor.o: ../LuckyLog.h
 CMakeFiles/Lucky.dir/Acceptor.o: ../Socket.h
+CMakeFiles/Lucky.dir/Acceptor.o: ../ThreadID.h
 CMakeFiles/Lucky.dir/Acceptor.o: ../TimeStamp.h
-CMakeFiles/Lucky.dir/Acceptor.o: ../getThreadID.h
 
 CMakeFiles/Lucky.dir/Address.o: ../Address.cpp
 CMakeFiles/Lucky.dir/Address.o: ../Address.h
@@ -27,32 +27,32 @@ CMakeFiles/Lucky.dir/Connection.o: ../EventLoop.h
 CMakeFiles/Lucky.dir/Connection.o: ../Filed.h
 CMakeFiles/Lucky.dir/Connection.o: ../LuckyLog.h
 CMakeFiles/Lucky.dir/Connection.o: ../Socket.h
+CMakeFiles/Lucky.dir/Connection.o: ../ThreadID.h
 CMakeFiles/Lucky.dir/Connection.o: ../TimeStamp.h
-CMakeFiles/Lucky.dir/Connection.o: ../getThreadID.h
 
 CMakeFiles/Lucky.dir/Epoller.o: ../Epoller.cpp
 CMakeFiles/Lucky.dir/Epoller.o: ../Epoller.h
 CMakeFiles/Lucky.dir/Epoller.o: ../EventLoop.h
 CMakeFiles/Lucky.dir/Epoller.o: ../Filed.h
 CMakeFiles/Lucky.dir/Epoller.o: ../LuckyLog.h
+CMakeFiles/Lucky.dir/Epoller.o: ../ThreadID.h
 CMakeFiles/Lucky.dir/Epoller.o: ../TimeStamp.h
-CMakeFiles/Lucky.dir/Epoller.o: ../getThreadID.h
 
 CMakeFiles/Lucky.dir/EventLoop.o: ../Epoller.h
 CMakeFiles/Lucky.dir/EventLoop.o: ../EventLoop.cpp
 CMakeFiles/Lucky.dir/EventLoop.o: ../EventLoop.h
 CMakeFiles/Lucky.dir/EventLoop.o: ../Filed.h
 CMakeFiles/Lucky.dir/EventLoop.o: ../LuckyLog.h
+CMakeFiles/Lucky.dir/EventLoop.o: ../ThreadID.h
 CMakeFiles/Lucky.dir/EventLoop.o: ../TimeStamp.h
-CMakeFiles/Lucky.dir/EventLoop.o: ../getThreadID.h
 
 CMakeFiles/Lucky.dir/Filed.o: ../Epoller.h
 CMakeFiles/Lucky.dir/Filed.o: ../EventLoop.h
 CMakeFiles/Lucky.dir/Filed.o: ../Filed.cpp
 CMakeFiles/Lucky.dir/Filed.o: ../Filed.h
 CMakeFiles/Lucky.dir/Filed.o: ../LuckyLog.h
+CMakeFiles/Lucky.dir/Filed.o: ../ThreadID.h
 CMakeFiles/Lucky.dir/Filed.o: ../TimeStamp.h
-CMakeFiles/Lucky.dir/Filed.o: ../getThreadID.h
 
 CMakeFiles/Lucky.dir/LuckyLog.o: ../LuckyLog.cpp
 CMakeFiles/Lucky.dir/LuckyLog.o: ../LuckyLog.h
@@ -65,8 +65,8 @@ CMakeFiles/Lucky.dir/Manager.o: ../LuckyLog.h
 CMakeFiles/Lucky.dir/Manager.o: ../Manager.cpp
 CMakeFiles/Lucky.dir/Manager.o: ../Manager.h
 CMakeFiles/Lucky.dir/Manager.o: ../Thread.h
+CMakeFiles/Lucky.dir/Manager.o: ../ThreadID.h
 CMakeFiles/Lucky.dir/Manager.o: ../TimeStamp.h
-CMakeFiles/Lucky.dir/Manager.o: ../getThreadID.h
 
 CMakeFiles/Lucky.dir/Server.o: ../Acceptor.h
 CMakeFiles/Lucky.dir/Server.o: ../Address.h
@@ -81,9 +81,9 @@ CMakeFiles/Lucky.dir/Server.o: ../Server.cpp
 CMakeFiles/Lucky.dir/Server.o: ../Server.h
 CMakeFiles/Lucky.dir/Server.o: ../Socket.h
 CMakeFiles/Lucky.dir/Server.o: ../Thread.h
-CMakeFiles/Lucky.dir/Server.o: ../ThreadPool.h
+CMakeFiles/Lucky.dir/Server.o: ../ThreadID.h
+CMakeFiles/Lucky.dir/Server.o: ../ManagerPool.h
 CMakeFiles/Lucky.dir/Server.o: ../TimeStamp.h
-CMakeFiles/Lucky.dir/Server.o: ../getThreadID.h
 
 CMakeFiles/Lucky.dir/Socket.o: ../Address.h
 CMakeFiles/Lucky.dir/Socket.o: ../LuckyLog.h
@@ -93,22 +93,21 @@ CMakeFiles/Lucky.dir/Socket.o: ../TimeStamp.h
 
 CMakeFiles/Lucky.dir/Thread.o: ../Thread.cpp
 CMakeFiles/Lucky.dir/Thread.o: ../Thread.h
-CMakeFiles/Lucky.dir/Thread.o: ../getThreadID.h
+CMakeFiles/Lucky.dir/Thread.o: ../ThreadID.h
 
-CMakeFiles/Lucky.dir/ThreadPool.o: ../Epoller.h
-CMakeFiles/Lucky.dir/ThreadPool.o: ../EventLoop.h
-CMakeFiles/Lucky.dir/ThreadPool.o: ../Filed.h
-CMakeFiles/Lucky.dir/ThreadPool.o: ../LuckyLog.h
-CMakeFiles/Lucky.dir/ThreadPool.o: ../Manager.h
-CMakeFiles/Lucky.dir/ThreadPool.o: ../Thread.h
-CMakeFiles/Lucky.dir/ThreadPool.o: ../ThreadPool.cpp
-CMakeFiles/Lucky.dir/ThreadPool.o: ../ThreadPool.h
-CMakeFiles/Lucky.dir/ThreadPool.o: ../TimeStamp.h
-CMakeFiles/Lucky.dir/ThreadPool.o: ../getThreadID.h
+CMakeFiles/Lucky.dir/ThreadID.o: ../ThreadID.cpp
+
+CMakeFiles/Lucky.dir/ManagerPool.o: ../Epoller.h
+CMakeFiles/Lucky.dir/ManagerPool.o: ../EventLoop.h
+CMakeFiles/Lucky.dir/ManagerPool.o: ../Filed.h
+CMakeFiles/Lucky.dir/ManagerPool.o: ../LuckyLog.h
+CMakeFiles/Lucky.dir/ManagerPool.o: ../Manager.h
+CMakeFiles/Lucky.dir/ManagerPool.o: ../Thread.h
+CMakeFiles/Lucky.dir/ManagerPool.o: ../ThreadID.h
+CMakeFiles/Lucky.dir/ManagerPool.o: ../ManagerPool.cpp
+CMakeFiles/Lucky.dir/ManagerPool.o: ../ManagerPool.h
+CMakeFiles/Lucky.dir/ManagerPool.o: ../TimeStamp.h
 
 CMakeFiles/Lucky.dir/TimeStamp.o: ../TimeStamp.cpp
 CMakeFiles/Lucky.dir/TimeStamp.o: ../TimeStamp.h
-
-CMakeFiles/Lucky.dir/getThreadID.o: ../getThreadID.cpp
-CMakeFiles/Lucky.dir/getThreadID.o: ../getThreadID.h
 
