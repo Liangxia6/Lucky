@@ -1,7 +1,7 @@
 #include <string>
 #include <iostream>
-#include <Lucky/Server.h>
-#include <Lucky/LuckyLog.h>
+#include "Server.h"
+#include "LuckyLog.h"
 
 class EchoServer
 {
@@ -30,7 +30,6 @@ private:
     {
         if (conn->isConnect())
         {
-            std::cout << "111" << std::endl;
             LOG_INFOM("Connection UP : %s", conn->getPeerAddress().toIpPort().c_str());
         }
         else

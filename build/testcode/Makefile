@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hongcy/桌面/Lucky/build/CMakeFiles /home/hongcy/桌面/Lucky/build//CMakeFiles/progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	cd /home/hongcy/桌面/Lucky/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/hongcy/桌面/Lucky/build/CMakeFiles /home/hongcy/桌面/Lucky/build/testcode//CMakeFiles/progress.marks
+	cd /home/hongcy/桌面/Lucky/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testcode/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/hongcy/桌面/Lucky/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
+	cd /home/hongcy/桌面/Lucky/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testcode/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,44 +103,47 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /home/hongcy/桌面/Lucky/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testcode/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /home/hongcy/桌面/Lucky/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testcode/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/hongcy/桌面/Lucky/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named Lucky
+# Convenience name for target.
+testcode/CMakeFiles/EchoServer.dir/rule:
+	cd /home/hongcy/桌面/Lucky/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testcode/CMakeFiles/EchoServer.dir/rule
+.PHONY : testcode/CMakeFiles/EchoServer.dir/rule
 
-# Build rule for target.
-Lucky: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Lucky
-.PHONY : Lucky
-
-# fast build rule for target.
-Lucky/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/Lucky.dir/build.make src/CMakeFiles/Lucky.dir/build
-.PHONY : Lucky/fast
-
-#=============================================================================
-# Target rules for targets named EchoServer
-
-# Build rule for target.
-EchoServer: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 EchoServer
+# Convenience name for target.
+EchoServer: testcode/CMakeFiles/EchoServer.dir/rule
 .PHONY : EchoServer
 
 # fast build rule for target.
 EchoServer/fast:
-	$(MAKE) $(MAKESILENT) -f testcode/CMakeFiles/EchoServer.dir/build.make testcode/CMakeFiles/EchoServer.dir/build
+	cd /home/hongcy/桌面/Lucky/build && $(MAKE) $(MAKESILENT) -f testcode/CMakeFiles/EchoServer.dir/build.make testcode/CMakeFiles/EchoServer.dir/build
 .PHONY : EchoServer/fast
+
+# target to build an object file
+test.o:
+	cd /home/hongcy/桌面/Lucky/build && $(MAKE) $(MAKESILENT) -f testcode/CMakeFiles/EchoServer.dir/build.make testcode/CMakeFiles/EchoServer.dir/test.o
+.PHONY : test.o
+
+# target to preprocess a source file
+test.i:
+	cd /home/hongcy/桌面/Lucky/build && $(MAKE) $(MAKESILENT) -f testcode/CMakeFiles/EchoServer.dir/build.make testcode/CMakeFiles/EchoServer.dir/test.i
+.PHONY : test.i
+
+# target to generate assembly for a file
+test.s:
+	cd /home/hongcy/桌面/Lucky/build && $(MAKE) $(MAKESILENT) -f testcode/CMakeFiles/EchoServer.dir/build.make testcode/CMakeFiles/EchoServer.dir/test.s
+.PHONY : test.s
 
 # Help Target
 help:
@@ -151,7 +154,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... EchoServer"
-	@echo "... Lucky"
+	@echo "... test.o"
+	@echo "... test.i"
+	@echo "... test.s"
 .PHONY : help
 
 
@@ -163,6 +168,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/hongcy/桌面/Lucky/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

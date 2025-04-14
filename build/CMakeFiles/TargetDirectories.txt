@@ -1,3 +1,8 @@
-/home/hong/Desktop/Lucky/build/CMakeFiles/edit_cache.dir
-/home/hong/Desktop/Lucky/build/CMakeFiles/rebuild_cache.dir
-/home/hong/Desktop/Lucky/build/CMakeFiles/Lucky.dir
+/home/hongcy/桌面/Lucky/build/CMakeFiles/edit_cache.dir
+/home/hongcy/桌面/Lucky/build/CMakeFiles/rebuild_cache.dir
+/home/hongcy/桌面/Lucky/build/src/CMakeFiles/Lucky.dir
+/home/hongcy/桌面/Lucky/build/src/CMakeFiles/edit_cache.dir
+/home/hongcy/桌面/Lucky/build/src/CMakeFiles/rebuild_cache.dir
+/home/hongcy/桌面/Lucky/build/testcode/CMakeFiles/EchoServer.dir
+/home/hongcy/桌面/Lucky/build/testcode/CMakeFiles/edit_cache.dir
+/home/hongcy/桌面/Lucky/build/testcode/CMakeFiles/rebuild_cache.dir

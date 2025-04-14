@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/EchoServer.dir/test.o -o /home/hongcy/桌面/Lucky/testcode/EchoServer   -L/home/hongcy/桌面/Lucky/lib  -Wl,-rpath,/home/hongcy/桌面/Lucky/lib /home/hongcy/桌面/Lucky/lib/libLucky.so -lpthread
